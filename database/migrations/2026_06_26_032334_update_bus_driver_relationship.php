@@ -12,10 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('buses', function (Blueprint $table) {
-            $table->dropForeign(['driver_id']);
-            $table->dropForeign(['conductor_id']);
-            $table->dropColumn('driver_id');
-            $table->dropColumn('conductor_id');
+            if (Schema::hasColumn('buses', 'driver_id')) {
+                try { $table->dropForeign(['driver_id']); } catch (\Exception $e) {}
+                $table->dropColumn('driver_id');
+            }
+            if (Schema::hasColumn('buses', 'conductor_id')) {
+                try { $table->dropForeign(['conductor_id']); } catch (\Exception $e) {}
+                $table->dropColumn('conductor_id');
+            }
         });
 
         Schema::table('drivers', function (Blueprint $table) {

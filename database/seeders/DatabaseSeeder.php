@@ -11,12 +11,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(UserSeeder::class);
+
+        $this->call(RealDataSeeder::class);
+
+        if (\Illuminate\Support\Facades\DB::table('drivers')->count() == 0) {
+            $this->call(StaffSeeder::class);
+        }
+
+        if (\Illuminate\Support\Facades\DB::table('buses')->count() == 0) {
+            $this->call(BusSeeder::class);
+        }
+
+        if (\Illuminate\Support\Facades\DB::table('routes')->count() == 0) {
+            $this->call(RouteSeeder::class);
+        }
+
         $this->call([
-            UserSeeder::class,
-            StaffSeeder::class,
-            BusSeeder::class,
             BusMaintenanceLogSeeder::class,
-            RouteSeeder::class,
             ScheduleSeeder::class,
             TripSeeder::class,
             TripBookingSeeder::class,
