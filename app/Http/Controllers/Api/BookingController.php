@@ -26,29 +26,17 @@ class BookingController extends Controller
         $request->validate([
             'trip_id' => 'required|exists:trips,id',
             'boarding_stop_id' => 'required|exists:haltes,id',
-            'arrive_stop_id' => 'required|exists:haltes,id',
-            'fare' => 'required|numeric|min:0'
+            'arrive_stop_id' => 'required|exists:haltes,id'
         ]);
 
         $user = $request->user();
         $wallet = $user->wallet;
 
-        if (!$wallet || $wallet->balance < $request->fare) {
-            return response()->json(['message' => 'Saldo tidak mencukupi'], 400);
+        if (!$wallet) {
+            return response()->json(['message' => 'Wallet tidak ditemukan'], 400);
         }
 
-        $booking = DB::transaction(function () use ($request, $user, $wallet) {
-            $wallet->balance -= $request->fare;
-            $wallet->save();
-
-            WalletTransactionHistory::create([
-                'wallet_id' => $wallet->id,
-                'type' => 'fare',
-                'amount' => $request->fare,
-                'balance_after' => $wallet->balance,
-                'description' => 'Pembayaran tiket bus',
-            ]);
-
+        $booking = DB::transaction(function () use ($request, $user) {
             return TripBooking::create([
                 'user_id' => $user->id,
                 'trip_id' => $request->trip_id,
@@ -56,7 +44,7 @@ class BookingController extends Controller
                 'arrive_stop_id' => $request->arrive_stop_id,
                 'qr_code_token' => Str::random(32),
                 'status' => 'booked',
-                'fare' => $request->fare,
+                'fare' => 0,
                 'booked_at' => now(),
             ]);
         });
@@ -86,7 +74,7 @@ class BookingController extends Controller
 
     public function tapOut(Request $request, $id)
     {
-        $booking = TripBooking::where('id', $id)
+        $booking = TripBooking::with(['boardingStop', 'arriveStop'])->where('id', $id)
             ->where('user_id', $request->user()->id)
             ->firstOrFail();
 
@@ -94,10 +82,50 @@ class BookingController extends Controller
             return response()->json(['message' => 'Status tiket tidak valid untuk Tap Out'], 400);
         }
 
-        $booking->status = 'completed';
-        $booking->tapped_out_at = now();
-        $booking->save();
+        $user = $request->user();
+        $wallet = $user->wallet;
 
-        return response()->json(['message' => 'Tap Out berhasil', 'data' => $booking]);
+        // Calculate Distance using Haversine
+        $lat1 = $booking->boardingStop->latitude;
+        $lon1 = $booking->boardingStop->longitude;
+        $lat2 = $booking->arriveStop->latitude;
+        $lon2 = $booking->arriveStop->longitude;
+
+        $earthRadius = 6371; // km
+        $dLat = deg2rad($lat2 - $lat1);
+        $dLon = deg2rad($lon2 - $lon1);
+        $a = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLon/2) * sin($dLon/2);
+        $c = 2 * atan2(sqrt($a), sqrt(1-$a));
+        $distance = $earthRadius * $c;
+
+        $feePerKm = \App\Models\GlobalSetting::getValue('fee_per_km', 1500);
+        $finalFare = round($distance * $feePerKm, 2);
+
+        DB::transaction(function() use ($booking, $wallet, $finalFare) {
+            if($wallet) {
+                $wallet->balance -= $finalFare;
+                $wallet->save();
+
+                WalletTransactionHistory::create([
+                    'wallet_id' => $wallet->id,
+                    'type' => 'fare',
+                    'amount' => $finalFare,
+                    'balance_after' => $wallet->balance,
+                    'description' => 'Pembayaran tiket bus (Tap Out)',
+                ]);
+            }
+
+            $booking->status = 'completed';
+            $booking->fare = $finalFare;
+            $booking->tapped_out_at = now();
+            $booking->save();
+        });
+
+        return response()->json([
+            'message' => 'Tap Out berhasil', 
+            'data' => $booking,
+            'distance_km' => round($distance, 2),
+            'fare_deducted' => $finalFare
+        ]);
     }
 }

@@ -30,4 +30,9 @@ class Driver extends Model
     {
         return $this->hasMany(DriverRating::class);
     }
+
+    public function bus()
+    {
+        return $this->belongsTo(Bus::class);
+    }
 }

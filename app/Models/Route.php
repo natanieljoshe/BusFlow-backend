@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
-    protected $fillable = ['code', 'name', 'total_distance_km', 'time_start', 'time_end', 'avg_speed', 'max_freq_per_hour', 'is_active'];
+    protected $fillable = ['code', 'name', 'total_distance_km', 'time_start', 'time_end', 'avg_speed', 'max_freq_per_hour', 'is_active', 'fare_per_km'];
 
     protected function casts(): array
     {
@@ -14,6 +14,7 @@ class Route extends Model
             'total_distance_km' => 'decimal:2',
             'avg_speed' => 'decimal:2',
             'is_active' => 'boolean',
+            'fare_per_km' => 'decimal:2',
         ];
     }
 
@@ -47,5 +48,10 @@ class Route extends Model
     public function favouritedBy()
     {
         return $this->hasMany(FavouriteRoute::class);
+    }
+
+    public function buses()
+    {
+        return $this->hasMany(Bus::class);
     }
 }
