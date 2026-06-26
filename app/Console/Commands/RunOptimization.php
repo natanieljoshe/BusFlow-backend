@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 
 class RunOptimization extends Command
 {
-    protected $signature = 'busflow:optimize {job_id}';
+    protected $signature = 'busflow:optimize {job_id} {--mode=live}';
     protected $description = 'Run optimization background job';
 
     public function handle()
@@ -26,7 +26,13 @@ class RunOptimization extends Command
             $pythonPath = 'python';
         }
 
-        $scriptPath = app_path('Algorithms/src/db_integrated.py');
+        $mode = $this->option('mode');
+        if ($mode === 'demo') {
+            $scriptPath = app_path('Algorithms/src/ga_optimizer.py');
+        } else {
+            $scriptPath = app_path('Algorithms/src/db_integrated.py');
+        }
+        
         $payloadPath = app_path('Algorithms/src/payload.JSON');
         $payload = file_get_contents($payloadPath);
 
@@ -41,6 +47,7 @@ class RunOptimization extends Command
 
         try {
             $totalGenerations = 1;
+            $startTime = time();
             $process->start();
 
             while ($process->isRunning()) {
@@ -63,9 +70,22 @@ class RunOptimization extends Command
                         $currentGen = (int)end($matches[1]);
                         $progress = min(99, round(($currentGen / max(1, $totalGenerations)) * 100));
                         
+                        $etaText = "";
+                        if ($currentGen > 0) {
+                            $elapsed = time() - $startTime;
+                            $timePerGen = $elapsed / $currentGen;
+                            $remainingGens = $totalGenerations - $currentGen;
+                            $etaSeconds = $remainingGens * $timePerGen;
+                            if ($etaSeconds > 60) {
+                                $etaText = " (~" . ceil($etaSeconds / 60) . " menit tersisa)";
+                            } else {
+                                $etaText = " (~" . ceil($etaSeconds) . " detik tersisa)";
+                            }
+                        }
+
                         $statusData = json_decode(File::get($statusFile), true) ?? [];
                         $statusData['progress'] = $progress;
-                        $statusData['message'] = "Generasi ke: $currentGen / $totalGenerations";
+                        $statusData['message'] = "Generasi ke: $currentGen / $totalGenerations" . $etaText;
                         File::put($statusFile, json_encode($statusData));
                     }
                 }
