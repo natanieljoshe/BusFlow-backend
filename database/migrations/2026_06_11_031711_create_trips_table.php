@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->foreignId('route_id')->constrained('routes')->onDelete('cascade');
-            $table->foreignId('bus_id')->constrained('buses')->onDelete('cascade');
-            $table->foreignId('driver_id')->constrained('drivers')->onDelete('cascade');
-            $table->foreignId('conductor_id')->constrained('conductors')->onDelete('cascade');
+            $table->foreignId('bus_id')->nullable()->constrained('buses')->onDelete('cascade');
+            $table->foreignId('driver_id')->nullable()->constrained('drivers')->onDelete('cascade');
+            $table->foreignId('conductor_id')->nullable()->constrained('conductors')->onDelete('cascade');
             $table->time('departure_time');
             $table->time('estimated_arrival')->nullable();
             $table->boolean('is_active')->default(true);

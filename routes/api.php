@@ -73,6 +73,10 @@ Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(functi
     Route::apiResource('haltes', HalteController::class);
     Route::apiResource('drivers', DriverController::class);
     Route::apiResource('conductors', ConductorController::class);
+    Route::post('/schedules/generate', [ScheduleController::class, 'generate']);
+    Route::post('/schedules/apply', [ScheduleController::class, 'apply']);
+    Route::get('/schedules/status/{id}', [ScheduleController::class, 'status']);
+    Route::post('/schedules/cancel/{id}', [ScheduleController::class, 'cancel']);
     Route::apiResource('schedules', ScheduleController::class);
     Route::apiResource('trips', AdminTripController::class);
     Route::apiResource('csv-uploads', CsvUploadController::class)->except(['update']);

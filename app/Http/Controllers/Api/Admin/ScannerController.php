@@ -121,6 +121,12 @@ class ScannerController extends Controller
 
         \Illuminate\Support\Facades\Cache::put('current_halte_id', $request->halte_id);
 
+        $trip = \App\Models\Trip::first();
+        if ($trip) {
+            $trip->current_halte_id = $request->halte_id;
+            $trip->save();
+        }
+
         return response()->json(['message' => 'Location updated successfully.']);
     }
 
@@ -130,7 +136,8 @@ class ScannerController extends Controller
      */
     public function currentPosition(Request $request)
     {
-        $currentHalteId = \Illuminate\Support\Facades\Cache::get('current_halte_id');
+        $trip = \App\Models\Trip::first();
+        $currentHalteId = $trip && $trip->current_halte_id ? $trip->current_halte_id : \Illuminate\Support\Facades\Cache::get('current_halte_id');
         $currentHalte = $currentHalteId ? \App\Models\Halte::find($currentHalteId) : null;
 
         // Optionally load the active booking's route haltes for the user
