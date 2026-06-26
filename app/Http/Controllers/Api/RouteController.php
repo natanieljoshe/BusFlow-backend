@@ -8,9 +8,25 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $routes = Route::where('is_active', true)->get();
+        $query = Route::with(['haltes' => function ($q) {
+            $q->orderBy('route_haltes.sequence', 'asc');
+        }])->where('is_active', true);
+
+        if ($request->has('origin') && !empty($request->origin)) {
+            $query->whereHas('haltes', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->origin . '%');
+            });
+        }
+
+        if ($request->has('destination') && !empty($request->destination)) {
+            $query->whereHas('haltes', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->destination . '%');
+            });
+        }
+
+        $routes = $query->get();
         return response()->json(['data' => $routes]);
     }
 
