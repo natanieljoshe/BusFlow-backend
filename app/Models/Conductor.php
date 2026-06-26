@@ -25,4 +25,9 @@ class Conductor extends Model
     {
         return $this->hasMany(Trip::class);
     }
+
+    public function bus()
+    {
+        return $this->belongsTo(Bus::class);
+    }
 }

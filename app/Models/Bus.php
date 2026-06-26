@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bus extends Model
 {
-    protected $fillable = ['plate_number', 'capacity', 'year', 'brand', 'status', 'total_distance'];
+    protected $fillable = ['plate_number', 'capacity', 'year', 'brand', 'status', 'total_distance', 'route_id'];
 
     protected function casts(): array
     {
@@ -24,5 +24,20 @@ class Bus extends Model
     public function trips()
     {
         return $this->hasMany(Trip::class);
+    }
+
+    public function drivers()
+    {
+        return $this->hasMany(Driver::class);
+    }
+
+    public function conductors()
+    {
+        return $this->hasMany(Conductor::class);
+    }
+
+    public function route()
+    {
+        return $this->belongsTo(Route::class);
     }
 }
