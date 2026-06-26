@@ -1,0 +1,859 @@
+{
+  "routes": [
+    {
+      "id": "Q114",
+      "name": "Q114",
+      "estimated_travel_time_min": 28,
+      "total_distance_km": 7.2,
+      "avg_speed": 15.0,
+      "origin_stop_id": "552372",
+      "destination_stop_id": "552463"
+    },
+    {
+      "id": "Q31",
+      "name": "Q31",
+      "estimated_travel_time_min": 26,
+      "total_distance_km": 6.6,
+      "avg_speed": 15.0,
+      "origin_stop_id": "501806",
+      "destination_stop_id": "505236"
+    },
+    {
+      "id": "M3",
+      "name": "M3",
+      "estimated_travel_time_min": 24,
+      "total_distance_km": 6.0,
+      "avg_speed": 15.0,
+      "origin_stop_id": "400038",
+      "destination_stop_id": "400452"
+    },
+    {
+      "id": "B69",
+      "name": "B69",
+      "estimated_travel_time_min": 24,
+      "total_distance_km": 6.0,
+      "avg_speed": 15.0,
+      "origin_stop_id": "306566",
+      "destination_stop_id": "306554"
+    }
+  ],
+  "buses": [
+    {
+      "id": "B01",
+      "capacity": 40,
+      "total_distance": 120
+    },
+    {
+      "id": "B02",
+      "capacity": 40,
+      "total_distance": 95
+    },
+    {
+      "id": "B03",
+      "capacity": 60,
+      "total_distance": 150
+    },
+    {
+      "id": "B04",
+      "capacity": 30,
+      "total_distance": 80
+    },
+    {
+      "id": "B05",
+      "capacity": 60,
+      "total_distance": 200
+    },
+    {
+      "id": "B06",
+      "capacity": 40,
+      "total_distance": 110
+    },
+    {
+      "id": "B07",
+      "capacity": 40,
+      "total_distance": 130
+    },
+    {
+      "id": "B08",
+      "capacity": 60,
+      "total_distance": 50
+    },
+    {
+      "id": "B09",
+      "capacity": 40,
+      "total_distance": 85
+    },
+    {
+      "id": "B10",
+      "capacity": 30,
+      "total_distance": 140
+    },
+    {
+      "id": "B11",
+      "capacity": 60,
+      "total_distance": 170
+    },
+    {
+      "id": "B12",
+      "capacity": 40,
+      "total_distance": 90
+    }
+  ],
+  "drivers": [
+    {
+      "id": "D01",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D02",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D03",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D04",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D05",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D06",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D07",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D08",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D09",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D10",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "D11",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D12",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D13",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D14",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D15",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D16",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D17",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D18",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D19",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D20",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "D21",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D22",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D23",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D24",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D25",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D26",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D27",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D28",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D29",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "D30",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    }
+  ],
+  "conductors": [
+    {
+      "id": "C01",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C02",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C03",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C04",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C05",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C06",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C07",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C08",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C09",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C10",
+      "shift_start": "05:00",
+      "shift_end": "13:00",
+      "status": "active"
+    },
+    {
+      "id": "C11",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C12",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C13",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C14",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C15",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C16",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C17",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C18",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C19",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C20",
+      "shift_start": "10:00",
+      "shift_end": "18:00",
+      "status": "active"
+    },
+    {
+      "id": "C21",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C22",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C23",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C24",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C25",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C26",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C27",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C28",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C29",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    },
+    {
+      "id": "C30",
+      "shift_start": "15:00",
+      "shift_end": "23:00",
+      "status": "active"
+    }
+  ],
+  "passenger_predictions": [],
+  "route_stops": [
+    {
+      "route_id": "Q114",
+      "stop_id": "552372",
+      "stop_name": "147 AV /231 ST",
+      "latitude": 40.657679,
+      "longitude": -73.749803,
+      "sequence": 1,
+      "distance_from_prev_stop": 0.0
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552457",
+      "stop_name": "BAYVIEW AV /DOUGHTY BL",
+      "latitude": 40.614053,
+      "longitude": -73.746301,
+      "sequence": 2,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552485",
+      "stop_name": "ROCKAWAY TPK /BURNSIDE AV",
+      "latitude": 40.624029,
+      "longitude": -73.735201,
+      "sequence": 3,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552326",
+      "stop_name": "GUY R BREWER BL /132 AV",
+      "latitude": 40.674639,
+      "longitude": -73.776418,
+      "sequence": 4,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552302",
+      "stop_name": "147 AV /232 ST",
+      "latitude": 40.657743,
+      "longitude": -73.7492,
+      "sequence": 5,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552350",
+      "stop_name": "GUY R BREWER BL /108 AV",
+      "latitude": 40.696434,
+      "longitude": -73.791232,
+      "sequence": 6,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552327",
+      "stop_name": "GUY R BREWER BL /132 AV",
+      "latitude": 40.674399,
+      "longitude": -73.776615,
+      "sequence": 7,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552501",
+      "stop_name": "BEACH 9 ST /MEEHAM AV",
+      "latitude": 40.598012,
+      "longitude": -73.744666,
+      "sequence": 8,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552336",
+      "stop_name": "GUY R BREWER BL /FOCH BL",
+      "latitude": 40.684467,
+      "longitude": -73.783005,
+      "sequence": 9,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552474",
+      "stop_name": "ROCKAWAY TPK /REYEM DR",
+      "latitude": 40.63196,
+      "longitude": -73.738485,
+      "sequence": 10,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552429",
+      "stop_name": "SEAGIRT AV/BEACH 9 ST",
+      "latitude": 40.59602,
+      "longitude": -73.744171,
+      "sequence": 11,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q114",
+      "stop_id": "552463",
+      "stop_name": "MOTT AV /LAWRENCE AV",
+      "latitude": 40.618313,
+      "longitude": -73.7371,
+      "sequence": 12,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501806",
+      "stop_name": "UTOPIA PY/50 AV",
+      "latitude": 40.744995,
+      "longitude": -73.792399,
+      "sequence": 1,
+      "distance_from_prev_stop": 0.0
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501501",
+      "stop_name": "UTOPIA PY/HORACE HARDING EXP",
+      "latitude": 40.738506,
+      "longitude": -73.793032,
+      "sequence": 2,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501874",
+      "stop_name": "UTOPIA PY/PIDGEON MEADOW RD",
+      "latitude": 40.747306,
+      "longitude": -73.792462,
+      "sequence": 3,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501735",
+      "stop_name": "32 AV/202 ST",
+      "latitude": 40.770284,
+      "longitude": -73.787161,
+      "sequence": 4,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501506",
+      "stop_name": "UTOPIA PY/73 AV",
+      "latitude": 40.729707,
+      "longitude": -73.793455,
+      "sequence": 5,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501027",
+      "stop_name": "BELL BL/36 AV",
+      "latitude": 40.767943,
+      "longitude": -73.773158,
+      "sequence": 6,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501436",
+      "stop_name": "UTOPIA PY/JEWEL AV",
+      "latitude": 40.731559,
+      "longitude": -73.793668,
+      "sequence": 7,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "503953",
+      "stop_name": "JAMAICA AV /162 ST",
+      "latitude": 40.704195,
+      "longitude": -73.798487,
+      "sequence": 8,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501511",
+      "stop_name": "UTOPIA PKY/ST. JOHNS UNIVERSITY",
+      "latitude": 40.723069,
+      "longitude": -73.790434,
+      "sequence": 9,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "501057",
+      "stop_name": "BELL BL/39 AV",
+      "latitude": 40.764974,
+      "longitude": -73.771832,
+      "sequence": 10,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "Q31",
+      "stop_id": "505236",
+      "stop_name": "169 St/HILLSIDE AV",
+      "latitude": 40.710543,
+      "longitude": -73.793016,
+      "sequence": 11,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "400038",
+      "stop_name": "MADISON AV/E 91 ST",
+      "latitude": 40.78436,
+      "longitude": -73.956137,
+      "sequence": 1,
+      "distance_from_prev_stop": 0.0
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "400426",
+      "stop_name": "ST NICHOLAS AV/W 187 ST",
+      "latitude": 40.853358,
+      "longitude": -73.930644,
+      "sequence": 2,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "400405",
+      "stop_name": "ST NICHOLAS AV/W 144 ST",
+      "latitude": 40.823278,
+      "longitude": -73.945037,
+      "sequence": 3,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "400482",
+      "stop_name": "MANHATTAN AV/W 116 ST",
+      "latitude": 40.804751,
+      "longitude": -73.957121,
+      "sequence": 4,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "403466",
+      "stop_name": "ST NICOLAS AV/FORT GEORGE HILL",
+      "latitude": 40.857071,
+      "longitude": -73.927934,
+      "sequence": 5,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "405091",
+      "stop_name": "FT GEORGE AV/66 FORT GEORGE AV",
+      "latitude": 40.85833,
+      "longitude": -73.925388,
+      "sequence": 6,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "403975",
+      "stop_name": "ST NICHOLAS AV/W 176 ST",
+      "latitude": 40.846368,
+      "longitude": -73.935747,
+      "sequence": 7,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "405227",
+      "stop_name": "ST NICHOLAS AV/W 147 ST",
+      "latitude": 40.825404,
+      "longitude": -73.943522,
+      "sequence": 8,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "400110",
+      "stop_name": "5 AV/E 104 ST",
+      "latitude": 40.793073,
+      "longitude": -73.952097,
+      "sequence": 9,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "M3",
+      "stop_id": "400452",
+      "stop_name": "ST NICHOLAS AV/W 184 ST",
+      "latitude": 40.85079,
+      "longitude": -73.932783,
+      "sequence": 10,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "306566",
+      "stop_name": "MC DONALD AV/CORTELYOU RD",
+      "latitude": 40.63816,
+      "longitude": -73.978939,
+      "sequence": 1,
+      "distance_from_prev_stop": 0.0
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "305636",
+      "stop_name": "7 AV/STERLING PL",
+      "latitude": 40.677315,
+      "longitude": -73.97344,
+      "sequence": 2,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "306564",
+      "stop_name": "MC DONALD AV/CHURCH AV",
+      "latitude": 40.641942,
+      "longitude": -73.97933,
+      "sequence": 3,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "304721",
+      "stop_name": "SANDS ST/GOLD ST",
+      "latitude": 40.699807,
+      "longitude": -73.983434,
+      "sequence": 4,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "305674",
+      "stop_name": "7 AV/GARFIELD PL",
+      "latitude": 40.672109,
+      "longitude": -73.97735,
+      "sequence": 5,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "801047",
+      "stop_name": "SANDS ST/PEARL ST",
+      "latitude": 40.699912,
+      "longitude": -73.987652,
+      "sequence": 6,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "801157",
+      "stop_name": "FLUSHING AV / CLERMONT AV",
+      "latitude": 40.69781,
+      "longitude": -73.970924,
+      "sequence": 7,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "304716",
+      "stop_name": "FLUSHING AV/VANDERBILT AV",
+      "latitude": 40.697898,
+      "longitude": -73.971277,
+      "sequence": 8,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "305834",
+      "stop_name": "VANDERBILT AV/DE KALB AV",
+      "latitude": 40.689567,
+      "longitude": -73.969209,
+      "sequence": 9,
+      "distance_from_prev_stop": 0.6
+    },
+    {
+      "route_id": "B69",
+      "stop_id": "306554",
+      "stop_name": "MC DONALD AV/VANDERBILT AV",
+      "latitude": 40.651955,
+      "longitude": -73.981126,
+      "sequence": 10,
+      "distance_from_prev_stop": 0.6
+    }
+  ],
+  "min_rest": 15,
+  "total_bus": 12,
+  "reserve_count": 2
+}
