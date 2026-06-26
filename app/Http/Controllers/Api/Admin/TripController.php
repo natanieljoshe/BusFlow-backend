@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 
 class TripController extends Controller
 {
-    public function index() { return response()->json(['data' => Trip::with(['schedule', 'route', 'bus', 'driver', 'conductor'])->get()]); }
+    public function index(Request $request) {
+        $query = Trip::with(['schedule', 'route', 'bus', 'driver', 'conductor']);
+        if ($request->has('route_id')) {
+            $query->where('route_id', $request->route_id);
+        }
+        return response()->json(['data' => $query->get()]);
+    }
     
     public function show($id) { return response()->json(['data' => Trip::with(['schedule', 'route', 'bus', 'driver', 'conductor'])->findOrFail($id)]); }
     

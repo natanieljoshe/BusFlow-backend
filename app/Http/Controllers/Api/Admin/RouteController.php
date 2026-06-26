@@ -8,25 +8,33 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function index() { return response()->json(['data' => Route::with('haltes')->get()]); }
+    public function index(Request $request) {
+        $query = Route::with('haltes');
+        
+        if ($request->has('origin') && !empty($request->origin)) {
+            $origin = $request->origin;
+            $query->whereHas('haltes', function($q) use ($origin) {
+                $q->where('name', 'like', "%{$origin}%")->orWhere('location', 'like', "%{$origin}%");
+            });
+        }
+
+        if ($request->has('destination') && !empty($request->destination)) {
+            $destination = $request->destination;
+            $query->whereHas('haltes', function($q) use ($destination) {
+                $q->where('name', 'like', "%{$destination}%")->orWhere('location', 'like', "%{$destination}%");
+            });
+        }
+
+        return response()->json(['data' => $query->get()]);
+    }
     
     public function show($id) { return response()->json(['data' => Route::with('haltes')->findOrFail($id)]); }
     
     public function store(Request $request) {
         $validated = $request->validate([
             'code' => 'required|string|unique:routes',
-            'name' => 'required|string',
-            'fare_per_km' => 'nullable|numeric|min:5000',
-            'total_distance_km' => 'nullable|numeric',
-            'time_start' => 'nullable|string',
-            'time_end' => 'nullable|string',
-            'avg_speed' => 'nullable|numeric',
-            'max_freq_per_hour' => 'nullable|integer',
-            'is_active' => 'boolean'
+            'name' => 'required|string'
         ]);
-        if (isset($validated['fare_per_km'])) {
-            $validated['fare_per_km'] = max((float)$validated['fare_per_km'], 5000);
-        }
         $route = Route::create($validated);
         return response()->json(['data' => $route], 201);
     }
@@ -35,18 +43,8 @@ class RouteController extends Controller
         $route = Route::findOrFail($id);
         $validated = $request->validate([
             'code' => 'string|unique:routes,code,'.$id,
-            'name' => 'string',
-            'fare_per_km' => 'nullable|numeric|min:5000',
-            'total_distance_km' => 'nullable|numeric',
-            'time_start' => 'nullable|string',
-            'time_end' => 'nullable|string',
-            'avg_speed' => 'nullable|numeric',
-            'max_freq_per_hour' => 'nullable|integer',
-            'is_active' => 'boolean'
+            'name' => 'string'
         ]);
-        if (isset($validated['fare_per_km'])) {
-            $validated['fare_per_km'] = max((float)$validated['fare_per_km'], 5000);
-        }
         $route->update($validated);
         return response()->json(['data' => $route]);
     }

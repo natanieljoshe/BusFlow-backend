@@ -16,10 +16,9 @@ class DriverController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id|unique:drivers',
             'employee_id' => 'required|string|unique:drivers',
-            'license_number' => 'required|string|unique:drivers',
-            'license_type' => 'required|string',
-            'license_expiry' => 'required|date',
-            'status' => 'boolean'
+            'phone' => 'nullable|string|max:20',
+            'joined_at' => 'nullable|date',
+            'is_available' => 'boolean'
         ]);
         $driver = Driver::create($validated);
         return response()->json(['data' => $driver], 201);
@@ -30,10 +29,9 @@ class DriverController extends Controller
         $validated = $request->validate([
             'user_id' => 'exists:users,id|unique:drivers,user_id,'.$id,
             'employee_id' => 'string|unique:drivers,employee_id,'.$id,
-            'license_number' => 'string|unique:drivers,license_number,'.$id,
-            'license_type' => 'string',
-            'license_expiry' => 'date',
-            'status' => 'boolean'
+            'phone' => 'nullable|string|max:20',
+            'joined_at' => 'nullable|date',
+            'is_available' => 'boolean'
         ]);
         $driver->update($validated);
         return response()->json(['data' => $driver]);

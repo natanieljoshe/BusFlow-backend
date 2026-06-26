@@ -16,7 +16,9 @@ class ConductorController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id|unique:conductors',
             'employee_id' => 'required|string|unique:conductors',
-            'status' => 'boolean'
+            'phone' => 'nullable|string|max:20',
+            'joined_at' => 'nullable|date',
+            'is_available' => 'boolean'
         ]);
         $conductor = Conductor::create($validated);
         return response()->json(['data' => $conductor], 201);
@@ -27,7 +29,9 @@ class ConductorController extends Controller
         $validated = $request->validate([
             'user_id' => 'exists:users,id|unique:conductors,user_id,'.$id,
             'employee_id' => 'string|unique:conductors,employee_id,'.$id,
-            'status' => 'boolean'
+            'phone' => 'nullable|string|max:20',
+            'joined_at' => 'nullable|date',
+            'is_available' => 'boolean'
         ]);
         $conductor->update($validated);
         return response()->json(['data' => $conductor]);

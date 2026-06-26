@@ -15,12 +15,17 @@ class HalteController extends Controller
     public function store(Request $request) {
         $validated = $request->validate([
             'name' => 'required|string',
-            'code' => 'required|string|unique:haltes',
+            'code' => 'nullable|string|unique:haltes',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'address' => 'nullable|string',
             'is_active' => 'boolean'
         ]);
+        
+        if (empty($validated['code'])) {
+            $validated['code'] = 'HLT-' . strtoupper(substr(uniqid(), -6));
+        }
+        
         $halte = Halte::create($validated);
         return response()->json(['data' => $halte], 201);
     }
@@ -29,12 +34,17 @@ class HalteController extends Controller
         $halte = Halte::findOrFail($id);
         $validated = $request->validate([
             'name' => 'string',
-            'code' => 'string|unique:haltes,code,'.$id,
+            'code' => 'nullable|string|unique:haltes,code,'.$id,
             'latitude' => 'numeric',
             'longitude' => 'numeric',
             'address' => 'nullable|string',
             'is_active' => 'boolean'
         ]);
+        
+        if (array_key_exists('code', $validated) && empty($validated['code'])) {
+            $validated['code'] = 'HLT-' . strtoupper(substr(uniqid(), -6));
+        }
+
         $halte->update($validated);
         return response()->json(['data' => $halte]);
     }
