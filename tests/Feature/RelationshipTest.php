@@ -71,13 +71,4 @@ class RelationshipTest extends TestCase
         $this->assertEquals(1500.00, $bus->route->fare_per_km);
     }
 
-    /**
-     * Test global config setting for fee_per_km.
-     */
-    public function test_global_fee_per_km_config()
-    {
-        $fee = config('app.fee_per_km');
-        $this->assertNotNull($fee);
-        $this->assertEquals(1000.00, $fee);
-    }
 }

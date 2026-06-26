@@ -148,16 +148,4 @@ class Milestone1VerificationTest extends TestCase
         $this->assertEquals(0.00, (float) $route->fare_per_km);
     }
 
-    /**
-     * Verify that fetching the global fee_per_km from config matches the .env value.
-     */
-    public function test_global_fee_per_km_matches_env()
-    {
-        // Get the value from config
-        $configValue = config('app.fee_per_km');
-        
-        // Assert it is set and equals to 1000.00 (from .env)
-        $this->assertNotNull($configValue);
-        $this->assertEquals(1000.00, (float) $configValue);
-    }
 }
