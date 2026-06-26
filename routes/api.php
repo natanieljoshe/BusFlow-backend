@@ -15,6 +15,10 @@ use App\Http\Controllers\Api\NotificationController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+// Google Login
+Route::get('/auth/google/redirect', [\App\Http\Controllers\Api\GoogleAuthController::class, 'redirect']);
+Route::get('/auth/google/callback', [\App\Http\Controllers\Api\GoogleAuthController::class, 'callback']);
+
 // Public Endpoints
 Route::get('/routes', [RouteController::class, 'index']);
 Route::get('/routes/{id}', [RouteController::class, 'show']);
@@ -58,10 +62,9 @@ use App\Http\Controllers\Api\Admin\ScheduleController;
 use App\Http\Controllers\Api\Admin\TripController as AdminTripController;
 use App\Http\Controllers\Api\Admin\CsvUploadController;
 
-Route::middleware(['auth:sanctum', 'role:admin,operator'])->prefix('admin')->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('buses', BusController::class);
-    Route::apiResource('routes', AdminRouteController::class);
     Route::apiResource('haltes', HalteController::class);
     Route::apiResource('drivers', DriverController::class);
     Route::apiResource('conductors', ConductorController::class);
@@ -70,3 +73,17 @@ Route::middleware(['auth:sanctum', 'role:admin,operator'])->prefix('admin')->gro
     Route::apiResource('csv-uploads', CsvUploadController::class)->except(['update']);
 });
 
+use App\Http\Controllers\Api\Admin\ScannerController;
+
+Route::middleware(['auth:sanctum', 'role:admin,operator'])->prefix('admin')->group(function () {
+    Route::post('/routes/{id}/haltes', [AdminRouteController::class, 'attachHalte']);
+    Route::delete('/routes/{id}/haltes/{halteId}', [AdminRouteController::class, 'detachHalte']);
+    Route::apiResource('routes', AdminRouteController::class);
+    Route::post('/scanner/tap-in', [ScannerController::class, 'tapIn']);
+});
+
+// Mock driver update location (open for demo)
+Route::post('/driver/update-location', [ScannerController::class, 'updateLocation']);
+
+// Public: current bus/halte position for user tracking
+Route::get('/current-position', [ScannerController::class, 'currentPosition']);

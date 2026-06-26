@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'fee_per_km' => env('FEE_PER_KM', 1000.00),
+
 ];
