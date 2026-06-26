@@ -23,6 +23,11 @@ Route::get('/auth/google/callback', [\App\Http\Controllers\Api\GoogleAuthControl
 Route::get('/routes', [RouteController::class, 'index']);
 Route::get('/routes/{id}', [RouteController::class, 'show']);
 Route::get('/trips', [TripController::class, 'index']);
+Route::get('/ga-payload', function() {
+    $path = app_path('Algorithms/src/payload.JSON');
+    if (!file_exists($path)) return response()->json([]);
+    return response()->json(json_decode(file_get_contents($path), true));
+});
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
