@@ -46,10 +46,40 @@ class ScannerController extends Controller
             if ($activeBooking) {
                 // Proses TAP OUT
                 $wallet = $user->wallet;
-                $fare = max((float)($activeBooking->trip->route->fare_per_km ?? 0), 5000);
+                
+                $arriveHalteId = \Illuminate\Support\Facades\Cache::get('current_halte_id', \App\Models\Halte::skip(1)->first()->id ?? 2);
+                $boardingHalteId = $activeBooking->boarding_stop_id;
+                
+                $route = $activeBooking->trip->route;
+                $farePerKm = (float)($route->fare_per_km ?? 0);
+                if ($farePerKm <= 0) {
+                    $farePerKm = (float) \App\Models\GlobalSetting::getValue('fee_per_km', 3);
+                }
+                
+                $routeHaltes = $route->haltes()->orderBy('route_haltes.sequence')->get();
+                $totalDistance = 0;
+                $isCounting = false;
+                
+                foreach ($routeHaltes as $halte) {
+                    if ($isCounting) {
+                        $totalDistance += (float)($halte->pivot->distance_from_prev_halte ?? 0);
+                    }
+                    
+                    if ($halte->id == $boardingHalteId) {
+                        $isCounting = true;
+                    }
+                    
+                    if ($halte->id == $arriveHalteId && $isCounting) {
+                        break;
+                    }
+                }
+                
+                // If somehow total distance is 0, we still enforce a minimum fare
+                $calculatedFare = $totalDistance * $farePerKm;
+                $fare = max($calculatedFare, $farePerKm);
                 
                 if ($wallet && $wallet->balance < $fare) {
-                    return response()->json(['message' => 'Saldo tidak cukup untuk Tap Out! (Sisa: Rp ' . number_format($wallet->balance, 0, ',', '.') . ')'], 400);
+                    return response()->json(['message' => 'Saldo tidak cukup untuk Tap Out! (Sisa: $' . number_format($wallet->balance, 2, '.', ',') . ', Butuh: $' . number_format($fare, 2, '.', ',') . ')'], 400);
                 }
 
                 if ($wallet) {
@@ -74,7 +104,7 @@ class ScannerController extends Controller
                 $activeBooking->save();
 
                 return response()->json([
-                    'message' => 'Check Out berhasil! Saldo terpotong Rp ' . number_format($fare, 0, ',', '.'),
+                    'message' => 'Check Out berhasil! Saldo terpotong $' . number_format($fare, 2, '.', ','),
                     'action' => 'checkout',
                     'data' => [
                         'booking_id' => $activeBooking->id,
@@ -84,8 +114,16 @@ class ScannerController extends Controller
             } else {
                 // Proses TAP IN
                 $wallet = $user->wallet;
-                if ($wallet && $wallet->balance < 5000) {
-                    return response()->json(['message' => 'Saldo minimum tidak cukup untuk Check In! (Min. Rp 5.000)'], 400);
+                
+                $tripForTapIn = \App\Models\Trip::first();
+                $routeForTapIn = $tripForTapIn ? $tripForTapIn->route : null;
+                $minBalance = $routeForTapIn ? (float)($routeForTapIn->fare_per_km ?? 0) : 0;
+                if ($minBalance <= 0) {
+                    $minBalance = (float) \App\Models\GlobalSetting::getValue('fee_per_km', 3);
+                }
+
+                if ($wallet && $wallet->balance < $minBalance) {
+                    return response()->json(['message' => 'Saldo minimum tidak cukup untuk Check In! (Min. $' . number_format($minBalance, 2, '.', ',') . ')'], 400);
                 }
 
                 // Create new booking for tap in

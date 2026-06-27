@@ -78,16 +78,22 @@ Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(functi
     Route::get('/schedules/status/{id}', [ScheduleController::class, 'status']);
     Route::post('/schedules/cancel/{id}', [ScheduleController::class, 'cancel']);
     Route::apiResource('schedules', ScheduleController::class);
-    Route::apiResource('trips', AdminTripController::class);
     Route::apiResource('csv-uploads', CsvUploadController::class)->except(['update']);
+});
+
+Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
+    Route::post('/routes/{id}/haltes', [AdminRouteController::class, 'attachHalte']);
+    Route::delete('/routes/{id}/haltes/{halteId}', [AdminRouteController::class, 'detachHalte']);
+    Route::apiResource('routes', AdminRouteController::class);
 });
 
 use App\Http\Controllers\Api\Admin\ScannerController;
 
 Route::middleware(['auth:sanctum', 'role:admin,operator'])->prefix('admin')->group(function () {
-    Route::post('/routes/{id}/haltes', [AdminRouteController::class, 'attachHalte']);
-    Route::delete('/routes/{id}/haltes/{halteId}', [AdminRouteController::class, 'detachHalte']);
-    Route::apiResource('routes', AdminRouteController::class);
+    Route::apiResource('trips', AdminTripController::class);
+});
+
+Route::middleware(['auth:sanctum', 'role:admin,operator,driver,conductor'])->prefix('admin')->group(function () {
     Route::post('/scanner/tap-in', [ScannerController::class, 'tapIn']);
 });
 

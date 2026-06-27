@@ -10,7 +10,7 @@ class TripController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Trip::with(['route', 'bus', 'driver', 'conductor'])
+        $query = Trip::with(['route', 'bus', 'driver.user', 'conductor.user'])
             ->where('is_active', true)
             ->whereHas('schedule', function ($q) {
                 $q->where('is_active', true)
