@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class ConductorController extends Controller
 {
-    public function index() { return response()->json(['data' => Conductor::with('user')->get()]); }
+    public function index() { return response()->json(['data' => Conductor::with(['user', 'route'])->get()]); }
     
-    public function show($id) { return response()->json(['data' => Conductor::with('user')->findOrFail($id)]); }
+    public function show($id) { return response()->json(['data' => Conductor::with(['user', 'route'])->findOrFail($id)]); }
     
     public function store(Request $request) {
         $validated = $request->validate([
@@ -18,7 +18,10 @@ class ConductorController extends Controller
             'employee_id' => 'required|string|unique:conductors',
             'phone' => 'nullable|string|max:20',
             'joined_at' => 'nullable|date',
-            'is_available' => 'boolean'
+            'is_available' => 'boolean',
+            'route_id' => 'nullable|exists:routes,id',
+            'shift_start' => 'nullable|date_format:H:i',
+            'shift_end' => 'nullable|date_format:H:i'
         ]);
         $conductor = Conductor::create($validated);
         return response()->json(['data' => $conductor], 201);
@@ -31,7 +34,10 @@ class ConductorController extends Controller
             'employee_id' => 'string|unique:conductors,employee_id,'.$id,
             'phone' => 'nullable|string|max:20',
             'joined_at' => 'nullable|date',
-            'is_available' => 'boolean'
+            'is_available' => 'boolean',
+            'route_id' => 'nullable|exists:routes,id',
+            'shift_start' => 'nullable|date_format:H:i',
+            'shift_end' => 'nullable|date_format:H:i'
         ]);
         $conductor->update($validated);
         return response()->json(['data' => $conductor]);

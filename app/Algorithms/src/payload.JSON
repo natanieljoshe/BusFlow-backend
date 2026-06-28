@@ -1,859 +1,1301 @@
 {
-  "routes": [
-    {
-      "id": "Q114",
-      "name": "Q114",
-      "estimated_travel_time_min": 28,
-      "total_distance_km": 7.2,
-      "avg_speed": 15.0,
-      "origin_stop_id": "552372",
-      "destination_stop_id": "552463"
-    },
-    {
-      "id": "Q31",
-      "name": "Q31",
-      "estimated_travel_time_min": 26,
-      "total_distance_km": 6.6,
-      "avg_speed": 15.0,
-      "origin_stop_id": "501806",
-      "destination_stop_id": "505236"
-    },
-    {
-      "id": "M3",
-      "name": "M3",
-      "estimated_travel_time_min": 24,
-      "total_distance_km": 6.0,
-      "avg_speed": 15.0,
-      "origin_stop_id": "400038",
-      "destination_stop_id": "400452"
-    },
-    {
-      "id": "B69",
-      "name": "B69",
-      "estimated_travel_time_min": 24,
-      "total_distance_km": 6.0,
-      "avg_speed": 15.0,
-      "origin_stop_id": "306566",
-      "destination_stop_id": "306554"
-    }
-  ],
-  "buses": [
-    {
-      "id": "B01",
-      "capacity": 40,
-      "total_distance": 120
-    },
-    {
-      "id": "B02",
-      "capacity": 40,
-      "total_distance": 95
-    },
-    {
-      "id": "B03",
-      "capacity": 60,
-      "total_distance": 150
-    },
-    {
-      "id": "B04",
-      "capacity": 30,
-      "total_distance": 80
-    },
-    {
-      "id": "B05",
-      "capacity": 60,
-      "total_distance": 200
-    },
-    {
-      "id": "B06",
-      "capacity": 40,
-      "total_distance": 110
-    },
-    {
-      "id": "B07",
-      "capacity": 40,
-      "total_distance": 130
-    },
-    {
-      "id": "B08",
-      "capacity": 60,
-      "total_distance": 50
-    },
-    {
-      "id": "B09",
-      "capacity": 40,
-      "total_distance": 85
-    },
-    {
-      "id": "B10",
-      "capacity": 30,
-      "total_distance": 140
-    },
-    {
-      "id": "B11",
-      "capacity": 60,
-      "total_distance": 170
-    },
-    {
-      "id": "B12",
-      "capacity": 40,
-      "total_distance": 90
-    }
-  ],
-  "drivers": [
-    {
-      "id": "D01",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D02",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D03",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D04",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D05",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D06",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D07",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D08",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D09",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D10",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "D11",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D12",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D13",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D14",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D15",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D16",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D17",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D18",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D19",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D20",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "D21",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D22",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D23",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D24",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D25",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D26",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D27",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D28",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D29",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "D30",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    }
-  ],
-  "conductors": [
-    {
-      "id": "C01",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C02",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C03",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C04",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C05",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C06",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C07",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C08",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C09",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C10",
-      "shift_start": "05:00",
-      "shift_end": "13:00",
-      "status": "active"
-    },
-    {
-      "id": "C11",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C12",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C13",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C14",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C15",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C16",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C17",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C18",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C19",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C20",
-      "shift_start": "10:00",
-      "shift_end": "18:00",
-      "status": "active"
-    },
-    {
-      "id": "C21",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C22",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C23",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C24",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C25",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C26",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C27",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C28",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C29",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    },
-    {
-      "id": "C30",
-      "shift_start": "15:00",
-      "shift_end": "23:00",
-      "status": "active"
-    }
-  ],
-  "passenger_predictions": [],
-  "route_stops": [
-    {
-      "route_id": "Q114",
-      "stop_id": "552372",
-      "stop_name": "147 AV /231 ST",
-      "latitude": 40.657679,
-      "longitude": -73.749803,
-      "sequence": 1,
-      "distance_from_prev_stop": 0.0
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552457",
-      "stop_name": "BAYVIEW AV /DOUGHTY BL",
-      "latitude": 40.614053,
-      "longitude": -73.746301,
-      "sequence": 2,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552485",
-      "stop_name": "ROCKAWAY TPK /BURNSIDE AV",
-      "latitude": 40.624029,
-      "longitude": -73.735201,
-      "sequence": 3,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552326",
-      "stop_name": "GUY R BREWER BL /132 AV",
-      "latitude": 40.674639,
-      "longitude": -73.776418,
-      "sequence": 4,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552302",
-      "stop_name": "147 AV /232 ST",
-      "latitude": 40.657743,
-      "longitude": -73.7492,
-      "sequence": 5,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552350",
-      "stop_name": "GUY R BREWER BL /108 AV",
-      "latitude": 40.696434,
-      "longitude": -73.791232,
-      "sequence": 6,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552327",
-      "stop_name": "GUY R BREWER BL /132 AV",
-      "latitude": 40.674399,
-      "longitude": -73.776615,
-      "sequence": 7,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552501",
-      "stop_name": "BEACH 9 ST /MEEHAM AV",
-      "latitude": 40.598012,
-      "longitude": -73.744666,
-      "sequence": 8,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552336",
-      "stop_name": "GUY R BREWER BL /FOCH BL",
-      "latitude": 40.684467,
-      "longitude": -73.783005,
-      "sequence": 9,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552474",
-      "stop_name": "ROCKAWAY TPK /REYEM DR",
-      "latitude": 40.63196,
-      "longitude": -73.738485,
-      "sequence": 10,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552429",
-      "stop_name": "SEAGIRT AV/BEACH 9 ST",
-      "latitude": 40.59602,
-      "longitude": -73.744171,
-      "sequence": 11,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q114",
-      "stop_id": "552463",
-      "stop_name": "MOTT AV /LAWRENCE AV",
-      "latitude": 40.618313,
-      "longitude": -73.7371,
-      "sequence": 12,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501806",
-      "stop_name": "UTOPIA PY/50 AV",
-      "latitude": 40.744995,
-      "longitude": -73.792399,
-      "sequence": 1,
-      "distance_from_prev_stop": 0.0
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501501",
-      "stop_name": "UTOPIA PY/HORACE HARDING EXP",
-      "latitude": 40.738506,
-      "longitude": -73.793032,
-      "sequence": 2,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501874",
-      "stop_name": "UTOPIA PY/PIDGEON MEADOW RD",
-      "latitude": 40.747306,
-      "longitude": -73.792462,
-      "sequence": 3,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501735",
-      "stop_name": "32 AV/202 ST",
-      "latitude": 40.770284,
-      "longitude": -73.787161,
-      "sequence": 4,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501506",
-      "stop_name": "UTOPIA PY/73 AV",
-      "latitude": 40.729707,
-      "longitude": -73.793455,
-      "sequence": 5,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501027",
-      "stop_name": "BELL BL/36 AV",
-      "latitude": 40.767943,
-      "longitude": -73.773158,
-      "sequence": 6,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501436",
-      "stop_name": "UTOPIA PY/JEWEL AV",
-      "latitude": 40.731559,
-      "longitude": -73.793668,
-      "sequence": 7,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "503953",
-      "stop_name": "JAMAICA AV /162 ST",
-      "latitude": 40.704195,
-      "longitude": -73.798487,
-      "sequence": 8,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501511",
-      "stop_name": "UTOPIA PKY/ST. JOHNS UNIVERSITY",
-      "latitude": 40.723069,
-      "longitude": -73.790434,
-      "sequence": 9,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "501057",
-      "stop_name": "BELL BL/39 AV",
-      "latitude": 40.764974,
-      "longitude": -73.771832,
-      "sequence": 10,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "Q31",
-      "stop_id": "505236",
-      "stop_name": "169 St/HILLSIDE AV",
-      "latitude": 40.710543,
-      "longitude": -73.793016,
-      "sequence": 11,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "400038",
-      "stop_name": "MADISON AV/E 91 ST",
-      "latitude": 40.78436,
-      "longitude": -73.956137,
-      "sequence": 1,
-      "distance_from_prev_stop": 0.0
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "400426",
-      "stop_name": "ST NICHOLAS AV/W 187 ST",
-      "latitude": 40.853358,
-      "longitude": -73.930644,
-      "sequence": 2,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "400405",
-      "stop_name": "ST NICHOLAS AV/W 144 ST",
-      "latitude": 40.823278,
-      "longitude": -73.945037,
-      "sequence": 3,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "400482",
-      "stop_name": "MANHATTAN AV/W 116 ST",
-      "latitude": 40.804751,
-      "longitude": -73.957121,
-      "sequence": 4,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "403466",
-      "stop_name": "ST NICOLAS AV/FORT GEORGE HILL",
-      "latitude": 40.857071,
-      "longitude": -73.927934,
-      "sequence": 5,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "405091",
-      "stop_name": "FT GEORGE AV/66 FORT GEORGE AV",
-      "latitude": 40.85833,
-      "longitude": -73.925388,
-      "sequence": 6,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "403975",
-      "stop_name": "ST NICHOLAS AV/W 176 ST",
-      "latitude": 40.846368,
-      "longitude": -73.935747,
-      "sequence": 7,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "405227",
-      "stop_name": "ST NICHOLAS AV/W 147 ST",
-      "latitude": 40.825404,
-      "longitude": -73.943522,
-      "sequence": 8,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "400110",
-      "stop_name": "5 AV/E 104 ST",
-      "latitude": 40.793073,
-      "longitude": -73.952097,
-      "sequence": 9,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "M3",
-      "stop_id": "400452",
-      "stop_name": "ST NICHOLAS AV/W 184 ST",
-      "latitude": 40.85079,
-      "longitude": -73.932783,
-      "sequence": 10,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "306566",
-      "stop_name": "MC DONALD AV/CORTELYOU RD",
-      "latitude": 40.63816,
-      "longitude": -73.978939,
-      "sequence": 1,
-      "distance_from_prev_stop": 0.0
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "305636",
-      "stop_name": "7 AV/STERLING PL",
-      "latitude": 40.677315,
-      "longitude": -73.97344,
-      "sequence": 2,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "306564",
-      "stop_name": "MC DONALD AV/CHURCH AV",
-      "latitude": 40.641942,
-      "longitude": -73.97933,
-      "sequence": 3,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "304721",
-      "stop_name": "SANDS ST/GOLD ST",
-      "latitude": 40.699807,
-      "longitude": -73.983434,
-      "sequence": 4,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "305674",
-      "stop_name": "7 AV/GARFIELD PL",
-      "latitude": 40.672109,
-      "longitude": -73.97735,
-      "sequence": 5,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "801047",
-      "stop_name": "SANDS ST/PEARL ST",
-      "latitude": 40.699912,
-      "longitude": -73.987652,
-      "sequence": 6,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "801157",
-      "stop_name": "FLUSHING AV / CLERMONT AV",
-      "latitude": 40.69781,
-      "longitude": -73.970924,
-      "sequence": 7,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "304716",
-      "stop_name": "FLUSHING AV/VANDERBILT AV",
-      "latitude": 40.697898,
-      "longitude": -73.971277,
-      "sequence": 8,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "305834",
-      "stop_name": "VANDERBILT AV/DE KALB AV",
-      "latitude": 40.689567,
-      "longitude": -73.969209,
-      "sequence": 9,
-      "distance_from_prev_stop": 0.6
-    },
-    {
-      "route_id": "B69",
-      "stop_id": "306554",
-      "stop_name": "MC DONALD AV/VANDERBILT AV",
-      "latitude": 40.651955,
-      "longitude": -73.981126,
-      "sequence": 10,
-      "distance_from_prev_stop": 0.6
-    }
-  ],
-  "min_rest": 15,
-  "total_bus": 12,
-  "reserve_count": 2
+    "schedule_date": "2026-06-28",
+    "is_holiday": 0,
+    "routes": [
+        {
+            "id": 1,
+            "name": "Q114",
+            "estimated_travel_time_min": 28,
+            "total_distance_km": 10,
+            "avg_speed": 15,
+            "origin_stop_id": "552372",
+            "destination_stop_id": "552463"
+        },
+        {
+            "id": 2,
+            "name": "Q31",
+            "estimated_travel_time_min": 26,
+            "total_distance_km": 10,
+            "avg_speed": 15,
+            "origin_stop_id": "501806",
+            "destination_stop_id": "505236"
+        },
+        {
+            "id": 3,
+            "name": "M3",
+            "estimated_travel_time_min": 24,
+            "total_distance_km": 10,
+            "avg_speed": 15,
+            "origin_stop_id": "400038",
+            "destination_stop_id": "400452"
+        },
+        {
+            "id": 4,
+            "name": "B69",
+            "estimated_travel_time_min": 24,
+            "total_distance_km": 10,
+            "avg_speed": 15,
+            "origin_stop_id": "306566",
+            "destination_stop_id": "306554"
+        }
+    ],
+    "buses": [
+        {
+            "id": 1,
+            "capacity": 40,
+            "total_distance": "31282.67",
+            "route_id": 1,
+            "plate_number": "T 6789 JO"
+        },
+        {
+            "id": 2,
+            "capacity": 40,
+            "total_distance": "30162.98",
+            "route_id": 1,
+            "plate_number": "M 7481 MY"
+        },
+        {
+            "id": 3,
+            "capacity": 40,
+            "total_distance": "19746.86",
+            "route_id": 1,
+            "plate_number": "N 6165 QF"
+        },
+        {
+            "id": 4,
+            "capacity": 40,
+            "total_distance": "25256.45",
+            "route_id": 1,
+            "plate_number": "T 3115 RV"
+        },
+        {
+            "id": 5,
+            "capacity": 40,
+            "total_distance": "47878.61",
+            "route_id": 1,
+            "plate_number": "S 1668 NQ"
+        },
+        {
+            "id": 6,
+            "capacity": 40,
+            "total_distance": "39280.99",
+            "route_id": 2,
+            "plate_number": "V 5017 MF"
+        },
+        {
+            "id": 7,
+            "capacity": 40,
+            "total_distance": "18536.14",
+            "route_id": 2,
+            "plate_number": "E 4853 GI"
+        },
+        {
+            "id": 8,
+            "capacity": 40,
+            "total_distance": "42386.66",
+            "route_id": 2,
+            "plate_number": "R 0702 DU"
+        },
+        {
+            "id": 9,
+            "capacity": 40,
+            "total_distance": "39652.47",
+            "route_id": 2,
+            "plate_number": "M 8220 RG"
+        },
+        {
+            "id": 10,
+            "capacity": 40,
+            "total_distance": "38156.38",
+            "route_id": 2,
+            "plate_number": "C 9731 UI"
+        },
+        {
+            "id": 11,
+            "capacity": 40,
+            "total_distance": "29693.76",
+            "route_id": 3,
+            "plate_number": "N 1154 ZB"
+        },
+        {
+            "id": 12,
+            "capacity": 40,
+            "total_distance": "16306.25",
+            "route_id": 3,
+            "plate_number": "C 6344 KI"
+        },
+        {
+            "id": 13,
+            "capacity": 40,
+            "total_distance": "5949.58",
+            "route_id": 3,
+            "plate_number": "H 7787 MQ"
+        },
+        {
+            "id": 14,
+            "capacity": 40,
+            "total_distance": "6937.06",
+            "route_id": 3,
+            "plate_number": "D 8913 OJ"
+        },
+        {
+            "id": 15,
+            "capacity": 40,
+            "total_distance": "14419.87",
+            "route_id": 3,
+            "plate_number": "S 3624 BZ"
+        },
+        {
+            "id": 16,
+            "capacity": 40,
+            "total_distance": "34839.16",
+            "route_id": 4,
+            "plate_number": "P 2363 ND"
+        },
+        {
+            "id": 17,
+            "capacity": 40,
+            "total_distance": "3591.97",
+            "route_id": 4,
+            "plate_number": "I 9750 RP"
+        },
+        {
+            "id": 18,
+            "capacity": 40,
+            "total_distance": "30609.30",
+            "route_id": 4,
+            "plate_number": "S 2841 SY"
+        },
+        {
+            "id": 19,
+            "capacity": 40,
+            "total_distance": "3418.05",
+            "route_id": 4,
+            "plate_number": "M 6249 VT"
+        },
+        {
+            "id": 20,
+            "capacity": 40,
+            "total_distance": "21181.67",
+            "route_id": 4,
+            "plate_number": "Y 6673 UJ"
+        }
+    ],
+    "drivers": [
+        {
+            "id": "D1",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Asman Wasita",
+            "employee_id": "DRV-QQOAB781"
+        },
+        {
+            "id": "D2",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Hairyanto Habibi",
+            "employee_id": "DRV-QWFHE860"
+        },
+        {
+            "id": "D3",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Umaya Saefullah S.T.",
+            "employee_id": "DRV-KZTBM526"
+        },
+        {
+            "id": "D4",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Asmianto Marbun",
+            "employee_id": "DRV-WPXEP227"
+        },
+        {
+            "id": "D5",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Kadir Putra",
+            "employee_id": "DRV-XABPR647"
+        },
+        {
+            "id": "D6",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Akarsana Dwi Hutasoit S.T.",
+            "employee_id": "DRV-TFHAR197"
+        },
+        {
+            "id": "D7",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Mahfud Simbolon M.Farm",
+            "employee_id": "DRV-JGKHF475"
+        },
+        {
+            "id": "D8",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Karya Mustofa",
+            "employee_id": "DRV-GAIGW394"
+        },
+        {
+            "id": "D9",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Wardaya Budiman",
+            "employee_id": "DRV-TSOZJ954"
+        },
+        {
+            "id": "D10",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Upik Maras Narpati",
+            "employee_id": "DRV-HRNHT635"
+        },
+        {
+            "id": "D11",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Marwata Gaman Natsir",
+            "employee_id": "DRV-EKCGX718"
+        },
+        {
+            "id": "D12",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Langgeng Jailani S.IP",
+            "employee_id": "DRV-TCXRS987"
+        },
+        {
+            "id": "D13",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Cahya Natsir",
+            "employee_id": "DRV-UOSNQ410"
+        },
+        {
+            "id": "D14",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Kunthara Latupono S.Sos",
+            "employee_id": "DRV-SOURH567"
+        },
+        {
+            "id": "D15",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Indra Marpaung S.Kom",
+            "employee_id": "DRV-ZWSOO271"
+        },
+        {
+            "id": "D16",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Gaduh Widodo",
+            "employee_id": "DRV-EIFJH535"
+        },
+        {
+            "id": "D17",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Adika Latupono",
+            "employee_id": "DRV-NMJWO751"
+        },
+        {
+            "id": "D18",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Samsul Putra",
+            "employee_id": "DRV-MCLEU998"
+        },
+        {
+            "id": "D19",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Jarwa Lazuardi",
+            "employee_id": "DRV-WFBZH260"
+        },
+        {
+            "id": "D20",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Kemal Banawi Setiawan",
+            "employee_id": "DRV-BDKWO620"
+        },
+        {
+            "id": "D21",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Jaka Gadang Wijaya M.Pd",
+            "employee_id": "DRV-XVTQB833"
+        },
+        {
+            "id": "D22",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Bala Sirait",
+            "employee_id": "DRV-PITBX408"
+        },
+        {
+            "id": "D23",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Rama Hakim S.T.",
+            "employee_id": "DRV-CSXPB291"
+        },
+        {
+            "id": "D24",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Balidin Najmudin",
+            "employee_id": "DRV-CFQRQ346"
+        },
+        {
+            "id": "D25",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Gamanto Hartaka Ardianto",
+            "employee_id": "DRV-HHWHE540"
+        },
+        {
+            "id": "D26",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Balamantri Winarno",
+            "employee_id": "DRV-GWQDO700"
+        },
+        {
+            "id": "D27",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Cahyadi Hardana Marpaung S.Farm",
+            "employee_id": "DRV-OJTTM658"
+        },
+        {
+            "id": "D28",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Asirwada Harsanto Haryanto",
+            "employee_id": "DRV-XVXWO920"
+        },
+        {
+            "id": "D29",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Gandi Waskita",
+            "employee_id": "DRV-ZVHAL810"
+        },
+        {
+            "id": "D30",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Hendri Raditya Nababan",
+            "employee_id": "DRV-VWXPB243"
+        },
+        {
+            "id": "D31",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Emil Firmansyah",
+            "employee_id": "DRV-SCPMC837"
+        },
+        {
+            "id": "D32",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Galak Gunawan",
+            "employee_id": "DRV-RUWJC811"
+        },
+        {
+            "id": "D33",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Baktiono Utama",
+            "employee_id": "DRV-TXDGQ471"
+        },
+        {
+            "id": "D34",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Utama Maryadi",
+            "employee_id": "DRV-PPPWD146"
+        },
+        {
+            "id": "D35",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Bakiman Sirait",
+            "employee_id": "DRV-FNDNH326"
+        },
+        {
+            "id": "D36",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Umaya Mahmud Salahudin",
+            "employee_id": "DRV-GGHVJ270"
+        },
+        {
+            "id": "D37",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Samsul Budiyanto S.I.Kom",
+            "employee_id": "DRV-OZOWC878"
+        },
+        {
+            "id": "D38",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Lurhur Winarno",
+            "employee_id": "DRV-NBXNU945"
+        },
+        {
+            "id": "D39",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Edi Hutapea",
+            "employee_id": "DRV-WSRWN740"
+        },
+        {
+            "id": "D40",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Lukita Praba Marbun S.Gz",
+            "employee_id": "DRV-QDFYI147"
+        }
+    ],
+    "conductors": [
+        {
+            "id": "C1",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Wisnu Makuta Jailani",
+            "employee_id": "CND-JDGMG444"
+        },
+        {
+            "id": "C2",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Tasdik Dabukke",
+            "employee_id": "CND-GXSWD840"
+        },
+        {
+            "id": "C3",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Eman Daniswara Kuswoyo S.Psi",
+            "employee_id": "CND-EFRGN525"
+        },
+        {
+            "id": "C4",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Marsito Mandala",
+            "employee_id": "CND-QGVTZ986"
+        },
+        {
+            "id": "C5",
+            "route_id": 1,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Damar Widodo",
+            "employee_id": "CND-LCHXX151"
+        },
+        {
+            "id": "C6",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Prayitna Gaduh Dongoran M.TI.",
+            "employee_id": "CND-XWGNE860"
+        },
+        {
+            "id": "C7",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Perkasa Thamrin",
+            "employee_id": "CND-XSCJX635"
+        },
+        {
+            "id": "C8",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Hendra Dongoran",
+            "employee_id": "CND-DNNOF164"
+        },
+        {
+            "id": "C9",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Cakrabirawa Sitompul",
+            "employee_id": "CND-HGWFX447"
+        },
+        {
+            "id": "C10",
+            "route_id": 1,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Ihsan Tamba",
+            "employee_id": "CND-GQBUF409"
+        },
+        {
+            "id": "C11",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Satya Karya Napitupulu",
+            "employee_id": "CND-OVUOS206"
+        },
+        {
+            "id": "C12",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Kamal Dabukke S.IP",
+            "employee_id": "CND-JANSF633"
+        },
+        {
+            "id": "C13",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Raditya Lazuardi",
+            "employee_id": "CND-GSDJU458"
+        },
+        {
+            "id": "C14",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Parman Haryanto",
+            "employee_id": "CND-BYGJM717"
+        },
+        {
+            "id": "C15",
+            "route_id": 2,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Kambali Cengkir Prakasa",
+            "employee_id": "CND-NOSDH465"
+        },
+        {
+            "id": "C16",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Martana Hakim",
+            "employee_id": "CND-HAPIC674"
+        },
+        {
+            "id": "C17",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Argono Danuja Haryanto",
+            "employee_id": "CND-BMAYD129"
+        },
+        {
+            "id": "C18",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Pangeran Widodo S.T.",
+            "employee_id": "CND-PPCLJ443"
+        },
+        {
+            "id": "C19",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Arta Prabowo",
+            "employee_id": "CND-PPXNW828"
+        },
+        {
+            "id": "C20",
+            "route_id": 2,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Garan Emin Hardiansyah",
+            "employee_id": "CND-OFYZZ988"
+        },
+        {
+            "id": "C21",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Cagak Anggriawan",
+            "employee_id": "CND-RWWRO342"
+        },
+        {
+            "id": "C22",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Wardaya Mangunsong",
+            "employee_id": "CND-RBOZX821"
+        },
+        {
+            "id": "C23",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Pranawa Saefullah M.Farm",
+            "employee_id": "CND-SZQAP687"
+        },
+        {
+            "id": "C24",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Asman Damanik",
+            "employee_id": "CND-SEEYI799"
+        },
+        {
+            "id": "C25",
+            "route_id": 3,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Wadi Pangestu S.H.",
+            "employee_id": "CND-WDQJP553"
+        },
+        {
+            "id": "C26",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Gambira Hutagalung",
+            "employee_id": "CND-NVQWM169"
+        },
+        {
+            "id": "C27",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Jindra Waskita",
+            "employee_id": "CND-MZMJX450"
+        },
+        {
+            "id": "C28",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Baktianto Waskita",
+            "employee_id": "CND-GLGQG545"
+        },
+        {
+            "id": "C29",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Edison Wijaya",
+            "employee_id": "CND-YKKGH292"
+        },
+        {
+            "id": "C30",
+            "route_id": 3,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Putu Wira Saptono",
+            "employee_id": "CND-QPFHS743"
+        },
+        {
+            "id": "C31",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Rafid Tampubolon",
+            "employee_id": "CND-AHHZB686"
+        },
+        {
+            "id": "C32",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Utama Setiawan",
+            "employee_id": "CND-DZLWB225"
+        },
+        {
+            "id": "C33",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Jabal Kuswoyo",
+            "employee_id": "CND-MWASW478"
+        },
+        {
+            "id": "C34",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Cahyo Gaman Widodo",
+            "employee_id": "CND-XRESM770"
+        },
+        {
+            "id": "C35",
+            "route_id": 4,
+            "shift_start": "06:00",
+            "shift_end": "14:00",
+            "status": "active",
+            "name": "Najib Gunawan",
+            "employee_id": "CND-UAXER317"
+        },
+        {
+            "id": "C36",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Bancar Wibisono",
+            "employee_id": "CND-JSLVB243"
+        },
+        {
+            "id": "C37",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Bahuraksa Wibisono M.Ak",
+            "employee_id": "CND-OSNSA540"
+        },
+        {
+            "id": "C38",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Ajiono Maryadi",
+            "employee_id": "CND-RZXXA455"
+        },
+        {
+            "id": "C39",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Warsa Adriansyah",
+            "employee_id": "CND-RELTP400"
+        },
+        {
+            "id": "C40",
+            "route_id": 4,
+            "shift_start": "14:00",
+            "shift_end": "22:00",
+            "status": "active",
+            "name": "Hartaka Pratama S.Sos",
+            "employee_id": "CND-RBHKU164"
+        }
+    ],
+    "passenger_predictions": [],
+    "route_stops": [
+        {
+            "route_id": "Q114",
+            "stop_id": "552372",
+            "stop_name": "147 AV \/231 ST",
+            "latitude": 40.657679,
+            "longitude": -73.749803,
+            "sequence": 1,
+            "distance_from_prev_stop": 0
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552457",
+            "stop_name": "BAYVIEW AV \/DOUGHTY BL",
+            "latitude": 40.614053,
+            "longitude": -73.746301,
+            "sequence": 2,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552485",
+            "stop_name": "ROCKAWAY TPK \/BURNSIDE AV",
+            "latitude": 40.624029,
+            "longitude": -73.735201,
+            "sequence": 3,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552326",
+            "stop_name": "GUY R BREWER BL \/132 AV",
+            "latitude": 40.674639,
+            "longitude": -73.776418,
+            "sequence": 4,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552302",
+            "stop_name": "147 AV \/232 ST",
+            "latitude": 40.657743,
+            "longitude": -73.7492,
+            "sequence": 5,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552350",
+            "stop_name": "GUY R BREWER BL \/108 AV",
+            "latitude": 40.696434,
+            "longitude": -73.791232,
+            "sequence": 6,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552327",
+            "stop_name": "GUY R BREWER BL \/132 AV",
+            "latitude": 40.674399,
+            "longitude": -73.776615,
+            "sequence": 7,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552501",
+            "stop_name": "BEACH 9 ST \/MEEHAM AV",
+            "latitude": 40.598012,
+            "longitude": -73.744666,
+            "sequence": 8,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552336",
+            "stop_name": "GUY R BREWER BL \/FOCH BL",
+            "latitude": 40.684467,
+            "longitude": -73.783005,
+            "sequence": 9,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552474",
+            "stop_name": "ROCKAWAY TPK \/REYEM DR",
+            "latitude": 40.63196,
+            "longitude": -73.738485,
+            "sequence": 10,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552429",
+            "stop_name": "SEAGIRT AV\/BEACH 9 ST",
+            "latitude": 40.59602,
+            "longitude": -73.744171,
+            "sequence": 11,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q114",
+            "stop_id": "552463",
+            "stop_name": "MOTT AV \/LAWRENCE AV",
+            "latitude": 40.618313,
+            "longitude": -73.7371,
+            "sequence": 12,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501806",
+            "stop_name": "UTOPIA PY\/50 AV",
+            "latitude": 40.744995,
+            "longitude": -73.792399,
+            "sequence": 1,
+            "distance_from_prev_stop": 0
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501501",
+            "stop_name": "UTOPIA PY\/HORACE HARDING EXP",
+            "latitude": 40.738506,
+            "longitude": -73.793032,
+            "sequence": 2,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501874",
+            "stop_name": "UTOPIA PY\/PIDGEON MEADOW RD",
+            "latitude": 40.747306,
+            "longitude": -73.792462,
+            "sequence": 3,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501735",
+            "stop_name": "32 AV\/202 ST",
+            "latitude": 40.770284,
+            "longitude": -73.787161,
+            "sequence": 4,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501506",
+            "stop_name": "UTOPIA PY\/73 AV",
+            "latitude": 40.729707,
+            "longitude": -73.793455,
+            "sequence": 5,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501027",
+            "stop_name": "BELL BL\/36 AV",
+            "latitude": 40.767943,
+            "longitude": -73.773158,
+            "sequence": 6,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501436",
+            "stop_name": "UTOPIA PY\/JEWEL AV",
+            "latitude": 40.731559,
+            "longitude": -73.793668,
+            "sequence": 7,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "503953",
+            "stop_name": "JAMAICA AV \/162 ST",
+            "latitude": 40.704195,
+            "longitude": -73.798487,
+            "sequence": 8,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501511",
+            "stop_name": "UTOPIA PKY\/ST. JOHNS UNIVERSITY",
+            "latitude": 40.723069,
+            "longitude": -73.790434,
+            "sequence": 9,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "501057",
+            "stop_name": "BELL BL\/39 AV",
+            "latitude": 40.764974,
+            "longitude": -73.771832,
+            "sequence": 10,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "Q31",
+            "stop_id": "505236",
+            "stop_name": "169 St\/HILLSIDE AV",
+            "latitude": 40.710543,
+            "longitude": -73.793016,
+            "sequence": 11,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "400038",
+            "stop_name": "MADISON AV\/E 91 ST",
+            "latitude": 40.78436,
+            "longitude": -73.956137,
+            "sequence": 1,
+            "distance_from_prev_stop": 0
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "400426",
+            "stop_name": "ST NICHOLAS AV\/W 187 ST",
+            "latitude": 40.853358,
+            "longitude": -73.930644,
+            "sequence": 2,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "400405",
+            "stop_name": "ST NICHOLAS AV\/W 144 ST",
+            "latitude": 40.823278,
+            "longitude": -73.945037,
+            "sequence": 3,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "400482",
+            "stop_name": "MANHATTAN AV\/W 116 ST",
+            "latitude": 40.804751,
+            "longitude": -73.957121,
+            "sequence": 4,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "403466",
+            "stop_name": "ST NICOLAS AV\/FORT GEORGE HILL",
+            "latitude": 40.857071,
+            "longitude": -73.927934,
+            "sequence": 5,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "405091",
+            "stop_name": "FT GEORGE AV\/66 FORT GEORGE AV",
+            "latitude": 40.85833,
+            "longitude": -73.925388,
+            "sequence": 6,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "403975",
+            "stop_name": "ST NICHOLAS AV\/W 176 ST",
+            "latitude": 40.846368,
+            "longitude": -73.935747,
+            "sequence": 7,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "405227",
+            "stop_name": "ST NICHOLAS AV\/W 147 ST",
+            "latitude": 40.825404,
+            "longitude": -73.943522,
+            "sequence": 8,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "400110",
+            "stop_name": "5 AV\/E 104 ST",
+            "latitude": 40.793073,
+            "longitude": -73.952097,
+            "sequence": 9,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "M3",
+            "stop_id": "400452",
+            "stop_name": "ST NICHOLAS AV\/W 184 ST",
+            "latitude": 40.85079,
+            "longitude": -73.932783,
+            "sequence": 10,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "306566",
+            "stop_name": "MC DONALD AV\/CORTELYOU RD",
+            "latitude": 40.63816,
+            "longitude": -73.978939,
+            "sequence": 1,
+            "distance_from_prev_stop": 0
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "305636",
+            "stop_name": "7 AV\/STERLING PL",
+            "latitude": 40.677315,
+            "longitude": -73.97344,
+            "sequence": 2,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "306564",
+            "stop_name": "MC DONALD AV\/CHURCH AV",
+            "latitude": 40.641942,
+            "longitude": -73.97933,
+            "sequence": 3,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "304721",
+            "stop_name": "SANDS ST\/GOLD ST",
+            "latitude": 40.699807,
+            "longitude": -73.983434,
+            "sequence": 4,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "305674",
+            "stop_name": "7 AV\/GARFIELD PL",
+            "latitude": 40.672109,
+            "longitude": -73.97735,
+            "sequence": 5,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "801047",
+            "stop_name": "SANDS ST\/PEARL ST",
+            "latitude": 40.699912,
+            "longitude": -73.987652,
+            "sequence": 6,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "801157",
+            "stop_name": "FLUSHING AV \/ CLERMONT AV",
+            "latitude": 40.69781,
+            "longitude": -73.970924,
+            "sequence": 7,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "304716",
+            "stop_name": "FLUSHING AV\/VANDERBILT AV",
+            "latitude": 40.697898,
+            "longitude": -73.971277,
+            "sequence": 8,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "305834",
+            "stop_name": "VANDERBILT AV\/DE KALB AV",
+            "latitude": 40.689567,
+            "longitude": -73.969209,
+            "sequence": 9,
+            "distance_from_prev_stop": 0.6
+        },
+        {
+            "route_id": "B69",
+            "stop_id": "306554",
+            "stop_name": "MC DONALD AV\/VANDERBILT AV",
+            "latitude": 40.651955,
+            "longitude": -73.981126,
+            "sequence": 10,
+            "distance_from_prev_stop": 0.6
+        }
+    ],
+    "min_rest": 15,
+    "total_bus": 20,
+    "reserve_count": 2
 }

@@ -70,7 +70,8 @@ class RealDataSeeder extends Seeder
             }
         }
 
-        // 3. Seed Buses
+        // 3. Seed Buses (Dinonaktifkan, ditangani oleh FleetCrewOpsi2Seeder)
+        /*
         foreach ($data['buses'] ?? [] as $bus) {
             DB::table('buses')->updateOrInsert(
                 ['plate_number' => $bus['id']],
@@ -83,8 +84,10 @@ class RealDataSeeder extends Seeder
                 ]
             );
         }
+        */
 
-        // 4. Seed Drivers
+        // 4. Seed Drivers (Dinonaktifkan, ditangani oleh FleetCrewOpsi2Seeder)
+        /*
         foreach ($data['drivers'] ?? [] as $driver) {
             $email = strtolower($driver['id']) . '@busflow.com';
             $userDb = DB::table('users')->where('email', $email)->first();
@@ -115,8 +118,10 @@ class RealDataSeeder extends Seeder
                 ]
             );
         }
+        */
 
-        // 5. Seed Conductors
+        // 5. Seed Conductors (Dinonaktifkan, ditangani oleh FleetCrewOpsi2Seeder)
+        /*
         foreach ($data['conductors'] ?? [] as $cond) {
             $email = strtolower($cond['id']) . '@busflow.com';
             $userDb = DB::table('users')->where('email', $email)->first();
@@ -147,8 +152,10 @@ class RealDataSeeder extends Seeder
                 ]
             );
         }
+        */
 
-        // 6. Random Assignments (Buses to Routes, Drivers/Conductors to Buses)
+        // 6. Random Assignments (Dinonaktifkan, logika usang)
+        /*
         $routeIds = DB::table('routes')->pluck('id')->toArray();
         if (!empty($routeIds)) {
             $buses = DB::table('buses')->get();
@@ -175,6 +182,7 @@ class RealDataSeeder extends Seeder
                 }
             }
         }
+        */
 
         $this->command->info('RealDataSeeder ran successfully!');
     }

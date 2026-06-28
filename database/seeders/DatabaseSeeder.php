@@ -15,17 +15,20 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RealDataSeeder::class);
 
-        if (\Illuminate\Support\Facades\DB::table('drivers')->count() == 0) {
-            $this->call(StaffSeeder::class);
-        }
-
-        if (\Illuminate\Support\Facades\DB::table('buses')->count() == 0) {
-            $this->call(BusSeeder::class);
-        }
-
         if (\Illuminate\Support\Facades\DB::table('routes')->count() == 0) {
             $this->call(RouteSeeder::class);
         }
+
+        // Panggil seeder Opsi 2 tepat setelah rute ter-generate
+        $this->call(FleetAndCrewSeeder::class);
+
+        // if (\Illuminate\Support\Facades\DB::table('drivers')->count() == 0) {
+        //     $this->call(StaffSeeder::class);
+        // }
+
+        // if (\Illuminate\Support\Facades\DB::table('buses')->count() == 0) {
+        //     $this->call(BusSeeder::class);
+        // }
 
         $this->call([
             BusMaintenanceLogSeeder::class,

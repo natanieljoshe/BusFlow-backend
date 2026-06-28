@@ -26,16 +26,6 @@ class Bus extends Model
         return $this->hasMany(Trip::class);
     }
 
-    public function drivers()
-    {
-        return $this->hasMany(Driver::class);
-    }
-
-    public function conductors()
-    {
-        return $this->hasMany(Conductor::class);
-    }
-
     public function route()
     {
         return $this->belongsTo(Route::class);

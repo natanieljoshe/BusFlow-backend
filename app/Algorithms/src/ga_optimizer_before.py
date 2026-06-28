@@ -5,7 +5,6 @@ import time
 import json
 import select
 from copy import deepcopy
-import datetime
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from src.predict import predict_demand
 
@@ -322,7 +321,6 @@ def _buat_satu_kromosom_legal(payload: dict, bus_aktif: list,
     # [WAJIB-1] Hanya pakai bus_aktif (sudah difilter status == "active")
     # [WAJIB-2] Hanya pakai driver_aktif dan cond_aktif (sudah exclude yang cuti)
     bus_ids        = [b["id"] for b in bus_aktif]
-    bus_route_map  = {b["id"]: b.get("route_id") for b in bus_aktif}
     bus_free_at    = {bid: 0 for bid in bus_ids}
     bus_daily_min  = {bid: 0 for bid in bus_ids}
     driver_free_at = {d["id"]: 0 for d in driver_aktif}
@@ -339,125 +337,107 @@ def _buat_satu_kromosom_legal(payload: dict, bus_aktif: list,
     min_rest = payload.get("_min_rest_internal", _DEFAULT_GA["min_driver_rest_min"])
     kromosom = []
 
-    # === SOLUSI STARVATION: Loop berdasarkan Waktu (Chronological), BUKAN Rute ===
-    next_dep = {}
-    rute_info = {}
     for rute in payload["routes"]:
-        rid = rute["id"]
-        next_dep[rid] = _to_minutes(rute.get("time_start", _OPS_START))
-        rute_info[rid] = {
-            "time_end": _to_minutes(rute.get("time_end", _OPS_END)),
-            "travel_min": rute.get("estimated_travel_time_min", 60) or 60,
-        }
+        time_start = _to_minutes(rute.get("time_start", _OPS_START))
+        time_end   = _to_minutes(rute.get("time_end",   _OPS_END))
+        travel_min = rute.get("estimated_travel_time_min", 60) or 60
+        route_id   = rute["id"]
+        max_hours  = _DEFAULT_MAX_HOURS * 60
 
-    max_hours = _DEFAULT_MAX_HOURS * 60
+        dep = time_start
+        while dep + travel_min <= time_end:
+            arr = dep + travel_min
 
-    while True:
-        # Cari rute yang masih punya sisa waktu operasi
-        valid_routes = {rid: dep for rid, dep in next_dep.items() if dep + rute_info[rid]["travel_min"] <= rute_info[rid]["time_end"]}
-        if not valid_routes:
-            break
-            
-        # Ambil rute dengan jadwal keberangkatan PALING AWAL
-        route_id = min(valid_routes, key=valid_routes.get)
-        dep = valid_routes[route_id]
-        travel_min = rute_info[route_id]["travel_min"]
-        time_end = rute_info[route_id]["time_end"]
-        arr = dep + travel_min
+            bus_bebas = [
+                bid for bid in bus_ids
+                if bus_free_at[bid] <= dep
+                and bus_daily_min[bid] + travel_min <= _BUS_MAX_DAILY_MIN
+            ]
+            bus_aktif_sekarang = len([bid for bid in bus_ids if bus_free_at[bid] > dep])
+            if bus_aktif_sekarang >= max_bus_aktif:
+                bus_bebas = []
 
-        bus_bebas = [
-            bid for bid in bus_ids
-            if bus_free_at[bid] <= dep
-            and bus_daily_min[bid] + travel_min <= _BUS_MAX_DAILY_MIN
-            and str(bus_route_map.get(bid)) == str(route_id)
-        ]
-        bus_aktif_sekarang = len([bid for bid in bus_ids if bus_free_at[bid] > dep and str(bus_route_map.get(bid)) == str(route_id)])
-        if bus_aktif_sekarang >= max_bus_aktif:
-            bus_bebas = []
+            if not bus_bebas:
+                dep = min((bus_free_at[bid] for bid in bus_ids), default=dep + _HEADWAY_MIN)
+                if dep + travel_min > time_end:
+                    break
+                bus_bebas = [
+                    bid for bid in bus_ids
+                    if bus_free_at[bid] <= dep
+                    and bus_daily_min[bid] + travel_min <= _BUS_MAX_DAILY_MIN
+                ]
+                if not bus_bebas:
+                    break
 
-        if not bus_bebas:
-            # Cari waktu terdekat di mana ada bus yang benar-benar selesai tugas (setelah waktu 'dep' saat ini)
-            bus_yg_akan_bebas = [bus_free_at[b] for b in bus_ids if bus_free_at[b] > dep and str(bus_route_map.get(b)) == str(route_id)]
-            if bus_yg_akan_bebas:
-                next_dep[route_id] = min(bus_yg_akan_bebas)
-            else:
-                next_dep[route_id] = dep + _HEADWAY_MIN
-            continue
+            bus_id = random.choice(bus_bebas)
 
-        bus_id = random.choice(bus_bebas)
+            def driver_ok(d):
+                pid    = d["id"]
+                br     = d.get("break_duration") or min_rest
+                sh_s   = _to_minutes(d.get("shift_start", _OPS_START))
+                sh_e   = _to_minutes(d.get("shift_end",   _OPS_END))
+                worked = driver_worked.get(pid, 0)
+                free   = driver_free_at.get(pid, 0)
+                cont   = driver_cont.get(pid, 0)
+                gap    = dep - free if pid in driver_free_at else 999
+                cont_after = travel_min if gap >= br else cont + travel_min
+                return (
+                    sh_s <= dep <= sh_e
+                    and dep >= free + br
+                    and worked + travel_min <= max_hours
+                    and cont_after <= _REST_AFTER_HOURS * 60
+                )
 
-        def driver_ok(d):
-            pid    = d["id"]
-            br     = d.get("break_duration") or min_rest
-            sh_s   = _to_minutes(d.get("shift_start", _OPS_START))
-            sh_e   = _to_minutes(d.get("shift_end",   _OPS_END))
-            worked = driver_worked.get(pid, 0)
-            free   = driver_free_at.get(pid, 0)
-            cont   = driver_cont.get(pid, 0)
-            gap    = dep - free if pid in driver_free_at else 999
-            cont_after = travel_min if gap >= br else cont + travel_min
-            return (
-                sh_s <= dep <= sh_e
-                and dep >= free + br
-                and worked + travel_min <= max_hours
-                and cont_after <= _REST_AFTER_HOURS * 60
-            )
+            driver_pool = [d for d in driver_aktif if driver_ok(d)]
+            if not driver_pool:
+                driver_pool = _kru_aktif_pada(driver_aktif, dep)
+            driver    = random.choice(driver_pool)
+            driver_id = driver["id"]
 
-        driver_pool = [d for d in driver_aktif if driver_ok(d) and str(d.get("route_id")) == str(route_id)]
-        if not driver_pool:
-            driver_pool = [d for d in _kru_aktif_pada(driver_aktif, dep) if str(d.get("route_id")) == str(route_id)]
-        if not driver_pool:
-            driver_pool = driver_aktif
-        driver    = random.choice(driver_pool)
-        driver_id = driver["id"]
+            def cond_ok(c):
+                pid    = c["id"]
+                br     = c.get("break_duration") or min_rest
+                sh_s   = _to_minutes(c.get("shift_start", _OPS_START))
+                sh_e   = _to_minutes(c.get("shift_end",   _OPS_END))
+                worked = cond_worked.get(pid, 0)
+                free   = cond_free_at.get(pid, 0)
+                cont   = cond_cont.get(pid, 0)
+                gap    = dep - free if pid in cond_free_at else 999
+                cont_after = travel_min if gap >= br else cont + travel_min
+                return (
+                    sh_s <= dep <= sh_e
+                    and dep >= free + br
+                    and worked + travel_min <= max_hours
+                    and cont_after <= _REST_AFTER_HOURS * 60
+                )
 
-        def cond_ok(c):
-            pid    = c["id"]
-            br     = c.get("break_duration") or min_rest
-            sh_s   = _to_minutes(c.get("shift_start", _OPS_START))
-            sh_e   = _to_minutes(c.get("shift_end",   _OPS_END))
-            worked = cond_worked.get(pid, 0)
-            free   = cond_free_at.get(pid, 0)
-            cont   = cond_cont.get(pid, 0)
-            gap    = dep - free if pid in cond_free_at else 999
-            cont_after = travel_min if gap >= br else cont + travel_min
-            return (
-                sh_s <= dep <= sh_e
-                and dep >= free + br
-                and worked + travel_min <= max_hours
-                and cont_after <= _REST_AFTER_HOURS * 60
-            )
+            cond_pool = [c for c in cond_aktif if cond_ok(c)]
+            if not cond_pool:
+                cond_pool = _kru_aktif_pada(cond_aktif, dep)
+            cond    = random.choice(cond_pool)
+            cond_id = cond["id"]
 
-        cond_pool = [c for c in cond_aktif if cond_ok(c) and str(c.get("route_id")) == str(route_id)]
-        if not cond_pool:
-            cond_pool = [c for c in _kru_aktif_pada(cond_aktif, dep) if str(c.get("route_id")) == str(route_id)]
-        if not cond_pool:
-            cond_pool = cond_aktif
-        cond    = random.choice(cond_pool)
-        cond_id = cond["id"]
+            kromosom.append({
+                "departure_min": dep,
+                "route_id":      route_id,
+                "bus_id":        bus_id,
+                "driver_id":     driver_id,
+                "conductor_id":  cond_id,
+            })
 
-        kromosom.append({
-            "departure_min": dep,
-            "route_id":      route_id,
-            "bus_id":        bus_id,
-            "driver_id":     driver_id,
-            "conductor_id":  cond_id,
-        })
+            gap_d = dep - driver_free_at.get(driver_id, 0)
+            driver_cont[driver_id] = travel_min if gap_d >= (driver.get("break_duration") or min_rest) else driver_cont.get(driver_id, 0) + travel_min
+            gap_c = dep - cond_free_at.get(cond_id, 0)
+            cond_cont[cond_id] = travel_min if gap_c >= (cond.get("break_duration") or min_rest) else cond_cont.get(cond_id, 0) + travel_min
 
-        gap_d = dep - driver_free_at.get(driver_id, 0)
-        driver_cont[driver_id] = travel_min if gap_d >= (driver.get("break_duration") or min_rest) else driver_cont.get(driver_id, 0) + travel_min
-        gap_c = dep - cond_free_at.get(cond_id, 0)
-        cond_cont[cond_id] = travel_min if gap_c >= (cond.get("break_duration") or min_rest) else cond_cont.get(cond_id, 0) + travel_min
+            bus_free_at[bus_id]       = arr
+            bus_daily_min[bus_id]     = bus_daily_min.get(bus_id, 0) + travel_min
+            driver_free_at[driver_id] = arr
+            driver_worked[driver_id]  = driver_worked.get(driver_id, 0) + travel_min
+            cond_free_at[cond_id]     = arr
+            cond_worked[cond_id]      = cond_worked.get(cond_id, 0) + travel_min
 
-        bus_free_at[bus_id]       = arr
-        bus_daily_min[bus_id]     = bus_daily_min.get(bus_id, 0) + travel_min
-        driver_free_at[driver_id] = arr
-        driver_worked[driver_id]  = driver_worked.get(driver_id, 0) + travel_min
-        cond_free_at[cond_id]     = arr
-        cond_worked[cond_id]      = cond_worked.get(cond_id, 0) + travel_min
-
-        # Jadwal keberangkatan berikutnya untuk rute INI
-        next_dep[route_id] = dep + random.randint(_HEADWAY_MIN, _HEADWAY_MAX)
+            dep += random.randint(_HEADWAY_MIN, _HEADWAY_MAX)
 
     return kromosom
 
@@ -475,7 +455,6 @@ def _repair(kromosom: list, payload: dict, min_rest: int,
             bus_aktif: list, driver_aktif: list, cond_aktif: list) -> list:
     # [WAJIB-1] [WAJIB-2] Gunakan bus/kru yang sudah difilter
     bus_ids    = [b["id"] for b in bus_aktif]
-    bus_route_map = {b["id"]: b.get("route_id") for b in bus_aktif}
     rute_map   = {r["id"]: r for r in payload["routes"]}
     driver_map = {d["id"]: d for d in driver_aktif}
     cond_map   = {c["id"]: c for c in cond_aktif}
@@ -501,13 +480,11 @@ def _repair(kromosom: list, payload: dict, min_rest: int,
         if bid not in bus_ids:
             bid = None
         if bid and (bus_free_at.get(bid, 0) > dep_min or
-                    bus_daily_min.get(bid, 0) + travel > _BUS_MAX_DAILY_MIN or
-                    str(bus_route_map.get(bid)) != str(route_id)):
+                    bus_daily_min.get(bid, 0) + travel > _BUS_MAX_DAILY_MIN):
             alt = [
                 b for b in bus_ids
                 if bus_free_at.get(b, 0) <= dep_min
                 and bus_daily_min.get(b, 0) + travel <= _BUS_MAX_DAILY_MIN
-                and str(bus_route_map.get(b)) == str(route_id)
             ]
             if alt:
                 bid = random.choice(alt)
@@ -523,13 +500,12 @@ def _repair(kromosom: list, payload: dict, min_rest: int,
         if did:
             drv = driver_map.get(did, {})
             br  = drv.get("break_duration", min_rest)
-            if driver_free_at.get(did, 0) + br > dep_min or str(drv.get("route_id")) != str(route_id):
+            if driver_free_at.get(did, 0) + br > dep_min:
                 pool = [
                     d for d in driver_aktif
                     if driver_free_at.get(d["id"], 0) + (d.get("break_duration") or min_rest) <= dep_min
                     and _to_minutes(d.get("shift_start", _OPS_START)) <= dep_min
                     <= _to_minutes(d.get("shift_end", _OPS_END))
-                    and str(d.get("route_id")) == str(route_id)
                 ]
                 if pool:
                     did = random.choice(pool)["id"]
@@ -543,13 +519,12 @@ def _repair(kromosom: list, payload: dict, min_rest: int,
             cid = None
         if cid:
             br = (cond_map.get(cid) or {}).get("break_duration", min_rest)
-            if cond_free_at.get(cid, 0) + br > dep_min or str(cond_map.get(cid, {}).get("route_id")) != str(route_id):
+            if cond_free_at.get(cid, 0) + br > dep_min:
                 pool = [
                     c for c in cond_aktif
                     if cond_free_at.get(c["id"], 0) + (c.get("break_duration") or min_rest) <= dep_min
                     and _to_minutes(c.get("shift_start", _OPS_START)) <= dep_min
                     <= _to_minutes(c.get("shift_end", _OPS_END))
-                    and str(c.get("route_id")) == str(route_id)
                 ]
                 if pool:
                     cid = random.choice(pool)["id"]
@@ -586,8 +561,24 @@ def _mutasi(kromosom: list, payload: dict, mutation_rate: float, min_rest: int,
             bus_aktif: list, driver_aktif: list, cond_aktif: list) -> list:
     # [WAJIB-1] [WAJIB-2] Gunakan bus/kru yang sudah difilter
     bus_ids  = [b["id"] for b in bus_aktif]
-    bus_route_map = {b["id"]: b.get("route_id") for b in bus_aktif}
     rute_map = {r["id"]: r for r in payload["routes"]}
+
+    bus_free_at    = {}
+    bus_daily_min  = {}
+    driver_free_at = {}
+    cond_free_at   = {}
+    for trip in sorted(kromosom, key=lambda t: t.get("departure_min", 0)):
+        dep  = trip.get("departure_min", 0)
+        rid  = trip.get("route_id")
+        trav = (rute_map.get(rid) or {}).get("estimated_travel_time_min", 60) or 60
+        arr  = dep + trav
+        for fmap, key in [(bus_free_at, "bus_id"), (driver_free_at, "driver_id"), (cond_free_at, "conductor_id")]:
+            eid = trip.get(key)
+            if eid:
+                fmap[eid] = arr
+        bid = trip.get("bus_id")
+        if bid:
+            bus_daily_min[bid] = bus_daily_min.get(bid, 0) + trav
 
     for i, trip in enumerate(kromosom):
         if random.random() >= mutation_rate:
@@ -599,28 +590,30 @@ def _mutasi(kromosom: list, payload: dict, mutation_rate: float, min_rest: int,
         )[0]
 
         if gen_mana == "swap_bus":
-            if bus_ids:
-                r_id = trip.get("route_id")
-                valid_buses = [bid for bid in bus_ids if str(bus_route_map.get(bid)) == str(r_id)]
-                if valid_buses:
-                    trip["bus_id"] = random.choice(valid_buses)
+            bebas = [
+                b for b in bus_ids
+                if bus_free_at.get(b, 0) <= dep_min
+                and bus_daily_min.get(b, 0) + (rute_map.get(trip.get("route_id"), {}).get("estimated_travel_time_min", 60) or 60) <= _BUS_MAX_DAILY_MIN
+            ]
+            if bebas:
+                trip["bus_id"] = random.choice(bebas)
 
         elif gen_mana == "swap_driver":
-            r_id = trip.get("route_id")
             pool = [
                 d for d in driver_aktif
-                if _to_minutes(d.get("shift_start", _OPS_START)) <= dep_min <= _to_minutes(d.get("shift_end", _OPS_END))
-                and str(d.get("route_id")) == str(r_id)
+                if driver_free_at.get(d["id"], 0) + (d.get("break_duration") or min_rest) <= dep_min
+                and _to_minutes(d.get("shift_start", _OPS_START)) <= dep_min
+                <= _to_minutes(d.get("shift_end", _OPS_END))
             ]
             if pool:
                 trip["driver_id"] = random.choice(pool)["id"]
 
         elif gen_mana == "swap_conductor":
-            r_id = trip.get("route_id")
             pool = [
                 c for c in cond_aktif
-                if _to_minutes(c.get("shift_start", _OPS_START)) <= dep_min <= _to_minutes(c.get("shift_end", _OPS_END))
-                and str(c.get("route_id")) == str(r_id)
+                if cond_free_at.get(c["id"], 0) + (c.get("break_duration") or min_rest) <= dep_min
+                and _to_minutes(c.get("shift_start", _OPS_START)) <= dep_min
+                <= _to_minutes(c.get("shift_end", _OPS_END))
             ]
             if pool:
                 trip["conductor_id"] = random.choice(pool)["id"]
@@ -785,25 +778,15 @@ def jalankan_optimasi(payload: dict) -> dict:
         "stop_coords":   stop_coords,   # [OPSIONAL-1]
     }
 
-    # Menangkap dan memparsing tanggal dari payload
-    tanggal_str = payload.get("schedule_date", "2024-01-01")
-    try:
-        dt = datetime.datetime.strptime(tanggal_str, "%Y-%m-%d")
-    except ValueError:
-        dt = datetime.datetime.now()
-        
-    bulan = dt.month
-    hari_ke = dt.weekday()
-    libur = payload.get("is_holiday", 1 if hari_ke >= 5 else 0)
-
-    print(f"\n[AI] Menghubungkan ke Model PKL untuk jadwal {tanggal_str} (Bulan: {bulan}, Hari: {hari_ke}, Libur: {libur})...")
+    print("\n[AI] Menghubungkan ke Model PKL...")
     for rute in payload["routes"]:
         rid = rute["id"]
         rname = rute.get("name", rid)
         for h in range(5, 24):
             try:
-                # Memanggil jembatan AI dengan parameter dinamis
-                pred_val = predict_demand(rname, hour=h, day_of_week=hari_ke, month=bulan, is_holiday=libur)
+                # Memanggil jembatan AI (predict_demand)
+                # TODO (Backend): Ganti parameter day_of_week, month, is_holiday dengan data asli dari schedule_date
+                pred_val = predict_demand(rname, hour=h, day_of_week=0, month=6, is_holiday=0)
                 ctx["prediksi_map"][(rid, h)] = pred_val
             except Exception as e:
                 # Fallback: Mengambil rata-rata historis rute dari payload (dikirim backend), atau default 50
@@ -985,7 +968,7 @@ def jalankan_optimasi(payload: dict) -> dict:
             "total_trips":         len(trips_output),
             "avg_headway_minutes": avg_headway,
         },
-        "trips": [trip for trip in trips_output if trip["route_id"] == "Q114"],
+        "trips": trips_output,
         "constraints_applied": {
             "bus_capacity":           _DEFAULT_BUS_CAPACITY,
             "max_driver_hours":       _DEFAULT_MAX_HOURS,
