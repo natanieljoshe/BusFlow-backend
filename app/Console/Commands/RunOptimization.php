@@ -36,11 +36,11 @@ class RunOptimization extends Command
             $payloadArr['_target_route'] = $statusData['data']['route'] ?? 'Q114';
             
             $payloadArr['ga_parameters'] = [
-                'population_size' => 50,    // Aslinya 200
-                'generations' => 50,        // Aslinya 500
+                'population_size' => 200,    // Aslinya 200
+                'generations' => 500,        // Aslinya 500
                 'crossover_rate' => 0.8,
                 'mutation_rate' => 0.12,
-                'elitism_count' => 2,       // Aslinya 8
+                'elitism_count' => 8,       // Aslinya 8
                 'min_driver_rest_min' => 30
             ];
 
@@ -70,7 +70,7 @@ class RunOptimization extends Command
             $buses = \App\Models\Bus::where('status', true)
                 ->where(function($q) use ($routeId) {
                     $q->whereNull('route_id')->orWhere('route_id', $routeId);
-                })->limit($fleetCount)->get()->map(function($b) {
+                })->limit($fleetCount)->get()->map(function($b) use ($routeId) {
                 return [
                     'id' => (string) $b->id,
                     'capacity' => (int) $b->capacity,
@@ -80,7 +80,7 @@ class RunOptimization extends Command
             });
 
             $drivers = \App\Models\Driver::where('is_available', true)
-                ->limit($driverCount)->get()->map(function($d) {
+                ->limit($driverCount)->get()->map(function($d) use ($routeId) {
                 return [
                     'id' => (string) $d->id,
                     'employee_id' => (string) ($d->employee_id ?? $d->id),
@@ -92,7 +92,7 @@ class RunOptimization extends Command
             });
 
             $conductors = \App\Models\Conductor::where('is_available', true)
-                ->limit($conductorCount)->get()->map(function($c) {
+                ->limit($conductorCount)->get()->map(function($c) use ($routeId) {
                 return [
                     'id' => (string) $c->id,
                     'employee_id' => (string) ($c->employee_id ?? $c->id),
@@ -220,10 +220,12 @@ class RunOptimization extends Command
                 if (isset($payloadObj)) {
                     $result['routes'] = $payloadObj['routes'] ?? [];
                     $result['route_stops'] = $payloadObj['route_stops'] ?? [];
+                    $result['schedule_data']['date'] = $payloadObj['schedule_date'] ?? date('Y-m-d');
                 } elseif (isset($payload)) {
                     $payloadArr = json_decode($payload, true) ?? [];
                     $result['routes'] = $payloadArr['routes'] ?? [];
                     $result['route_stops'] = $payloadArr['route_stops'] ?? [];
+                    $result['schedule_data']['date'] = $payloadArr['schedule_date'] ?? date('Y-m-d');
                 }
                 
                 $statusData['result'] = $result;
