@@ -145,9 +145,9 @@ class ScheduleController extends Controller
                 $insertData[] = [
                     'schedule_id' => $schedule->id,
                     'route_id' => $trip['route_id'],
-                    'bus_id' => null,
-                    'driver_id' => null,
-                    'conductor_id' => null,
+                    'bus_id' => $trip['bus_id'] ?? null,
+                    'driver_id' => $trip['driver_id'] ?? null,
+                    'conductor_id' => $trip['conductor_id'] ?? null,
                     'departure_time' => $trip['departure_time'],
                     'estimated_arrival' => $trip['estimated_arrival'],
                     'is_active' => true,

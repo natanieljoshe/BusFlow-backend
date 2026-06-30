@@ -157,15 +157,42 @@ class ScannerController extends Controller
             'halte_id' => 'required|integer'
         ]);
 
+        $prevHalteId = \Illuminate\Support\Facades\Cache::get('current_halte_id');
         \Illuminate\Support\Facades\Cache::put('current_halte_id', $request->halte_id);
 
         $trip = \App\Models\Trip::first();
         if ($trip) {
             $trip->current_halte_id = $request->halte_id;
             $trip->save();
+            
+            // Tambahkan jarak tempuh ke armada bus
+            $bus = $trip->bus;
+            if ($bus && $prevHalteId && $prevHalteId != $request->halte_id) {
+                // Cari jarak halte saat ini dari halte sebelumnya pada rute ini
+                $routeHalte = \App\Models\RouteHalte::where('route_id', $trip->route_id)
+                    ->where('halte_id', $request->halte_id)
+                    ->first();
+                
+                if ($routeHalte) {
+                    $addedDistance = (float) $routeHalte->distance_from_prev_halte;
+                    if ($addedDistance > 0) {
+                        $bus->total_distance += $addedDistance;
+                        
+                        // Batas threshold servis (misal 10000 km)
+                        $maintenanceThreshold = 10000; 
+                        
+                        // Jika sudah melebihi batas, nonaktifkan bus (status = false/0)
+                        if ($bus->total_distance >= $maintenanceThreshold) {
+                            $bus->status = false; 
+                        }
+                        
+                        $bus->save();
+                    }
+                }
+            }
         }
 
-        return response()->json(['message' => 'Location updated successfully.']);
+        return response()->json(['message' => 'Location updated and distance accumulated successfully.']);
     }
 
     /**
